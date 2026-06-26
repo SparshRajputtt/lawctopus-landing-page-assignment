@@ -22,6 +22,7 @@ const navLinks = [
   { label: "Curriculum", href: "#curriculum" },
   { label: "Faculty", href: "#faculty" },
   { label: "Testimonials", href: "#testimonials" },
+  { label: "Pricing", href: "#pricing" },
   { label: "FAQ", href: "#faq" },
 ];
 
@@ -34,7 +35,7 @@ function PrimaryButton({ children, icon: Icon, className = "", ...props }) {
     <motion.button
       whileHover={{ scale: 1.02, y: -1 }}
       whileTap={{ scale: 0.98 }}
-      className={`group inline-flex items-center gap-2.5 rounded-lg bg-stone-900 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-stone-800 focus:outline-none focus:ring-2 focus:ring-stone-900 focus:ring-offset-2 ${className}`}
+      className={`group inline-flex items-center gap-2.5 rounded-lg bg-[#1a1a1a] px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-[#b87333] focus:outline-none focus:ring-2 focus:ring-[#b87333] focus:ring-offset-2 ${className}`}
       {...props}
     >
       {children}
@@ -129,7 +130,7 @@ export default function Navbar() {
         transition={{ duration: 0.6, ease: EASE_OUT }}
         className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
           scrolled
-            ? "border-b border-stone-200/80 bg-white/80 shadow-[0_1px_3px_rgba(0,0,0,0.04)] backdrop-blur-xl"
+            ? "border-b border-[#e8e4e0]/80 bg-white/80 shadow-[0_1px_3px_rgba(0,0,0,0.04)] backdrop-blur-xl"
             : "bg-transparent"
         }`}
         aria-label="Main navigation"
@@ -138,13 +139,13 @@ export default function Navbar() {
           {/* Logo */}
           <a
             href="#"
-            className="flex items-center gap-2 text-lg font-bold tracking-tight text-stone-900"
+            className="flex items-center gap-2 text-lg font-bold tracking-tight text-[#1a1a1a]"
             onClick={(e) => {
               e.preventDefault();
               window.scrollTo({ top: 0, behavior: "smooth" });
             }}
           >
-            <div className="flex h-7 w-7 items-center justify-center rounded-md bg-stone-900 text-white">
+            <div className="flex h-7 w-7 items-center justify-center rounded-md bg-[#1a1a1a] text-white">
               <span className="text-xs font-bold">L</span>
             </div>
             <span>Lawctopus</span>
@@ -160,15 +161,15 @@ export default function Navbar() {
                   onClick={() => handleNavClick(link.href)}
                   className={`relative rounded-md px-3.5 py-2 text-sm font-medium transition-colors ${
                     isActive
-                      ? "text-stone-900"
-                      : "text-stone-500 hover:text-stone-900"
+                      ? "text-[#1a1a1a]"
+                      : "text-[#6b6b6b] hover:text-[#1a1a1a]"
                   }`}
                 >
                   {link.label}
                   {isActive && (
                     <motion.div
                       layoutId="activeNav"
-                      className="absolute inset-x-3 -bottom-0.5 h-[2px] rounded-full bg-stone-900"
+                      className="absolute inset-x-3 -bottom-0.5 h-[2px] rounded-full bg-[#b87333]"
                       transition={{ type: "spring", stiffness: 380, damping: 30 }}
                     />
                   )}
@@ -179,7 +180,7 @@ export default function Navbar() {
 
           {/* Desktop CTA */}
           <div className="hidden lg:block">
-            <PrimaryButton icon={ArrowRight} onClick={() => handleNavClick("#enroll")}>
+            <PrimaryButton icon={ArrowRight} onClick={() => handleNavClick("#pricing")}>
               Enroll Now
             </PrimaryButton>
           </div>
@@ -187,7 +188,7 @@ export default function Navbar() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="flex h-10 w-10 items-center justify-center rounded-lg text-stone-600 transition-colors hover:bg-stone-100 lg:hidden"
+            className="flex h-10 w-10 items-center justify-center rounded-lg text-[#6b6b6b] transition-colors hover:bg-[#f5f0eb] lg:hidden"
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
             aria-expanded={mobileOpen}
           >
@@ -228,7 +229,7 @@ export default function Navbar() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.25 }}
-              className="fixed inset-0 z-40 bg-stone-900/20 backdrop-blur-sm lg:hidden"
+              className="fixed inset-0 z-40 bg-[#1a1a1a]/20 backdrop-blur-sm lg:hidden"
               onClick={() => setMobileOpen(false)}
             />
             {/* Menu Panel */}
@@ -237,7 +238,7 @@ export default function Navbar() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.3, ease: EASE_OUT }}
-              className="fixed inset-x-0 top-16 z-40 border-b border-stone-200 bg-white/95 shadow-lg backdrop-blur-xl lg:hidden"
+              className="fixed inset-x-0 top-16 z-40 border-b border-[#e8e4e0] bg-white/95 shadow-lg backdrop-blur-xl lg:hidden"
             >
               <div className="mx-auto max-w-7xl px-5 py-6 sm:px-6">
                 <motion.div
@@ -258,14 +259,14 @@ export default function Navbar() {
                         onClick={() => handleNavClick(link.href)}
                         className={`flex w-full items-center justify-between rounded-xl px-4 py-3.5 text-left text-base font-medium transition-colors ${
                           isActive
-                            ? "bg-stone-100 text-stone-900"
-                            : "text-stone-600 hover:bg-stone-50 hover:text-stone-900"
+                            ? "bg-[#f5f0eb] text-[#1a1a1a]"
+                            : "text-[#6b6b6b] hover:bg-[#faf8f5] hover:text-[#1a1a1a]"
                         }`}
                       >
                         {link.label}
                         <ArrowRight
                           className={`h-4 w-4 transition-transform ${
-                            isActive ? "translate-x-0.5 text-stone-900" : "text-stone-300"
+                            isActive ? "translate-x-0.5 text-[#b87333]" : "text-[#e8e4e0]"
                           }`}
                         />
                       </motion.button>
@@ -276,12 +277,12 @@ export default function Navbar() {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3, duration: 0.35, ease: EASE_OUT }}
-                  className="mt-6 border-t border-stone-100 pt-6"
+                  className="mt-6 border-t border-[#f5f0eb] pt-6"
                 >
                   <PrimaryButton
                     icon={ArrowRight}
                     className="w-full justify-center"
-                    onClick={() => handleNavClick("#enroll")}
+                    onClick={() => handleNavClick("#pricing")}
                   >
                     Enroll Now
                   </PrimaryButton>

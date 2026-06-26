@@ -2,21 +2,20 @@ import { useRef, useEffect, useState } from "react";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import {
   ArrowRight,
-  Download,
+  Play,
   FileText,
-  ShieldCheck,
-  Users,
-  PenTool,
+  Shield,
   Award,
-  CheckCircle2,
-  Clock,
   Briefcase,
+  CheckCircle2,
+  Users,
+  Clock,
   Star,
-  ChevronRight,
-  Layers,
+  FileCheck,
+  PenTool,
+  Globe,
   BookOpen,
-  Zap,
-  MessageSquare,
+  Calendar,
 } from "lucide-react";
 
 /* ──────────────────────────────────────────────────────────────
@@ -40,7 +39,7 @@ const staggerContainer = (stagger = 0.08, delay = 0) => ({
 });
 
 const staggerChild = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 24 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE_OUT } },
 };
 
@@ -62,15 +61,23 @@ const floatFast = {
 /* ──────────────────────────────────────────────────────────────
    Data
    ────────────────────────────────────────────────────────────── */
-const trustChips = [
-  { icon: Users, label: "Live Cohort Learning" },
-  { icon: PenTool, label: "Practical Drafting Exercises" },
-  { icon: BookOpen, label: "Expert Faculty" },
-  { icon: Award, label: "Certificate of Completion" },
-  { icon: Briefcase, label: "Freelancing Focus" },
+const stats = [
+  { icon: Users, value: "20K+", label: "Students Taught" },
+  { icon: Clock, value: "55", label: "Live Sessions" },
+  { icon: FileText, value: "24+", label: "Contracts Mastered" },
+  { icon: Award, value: "93.2", label: "Average Rating" },
+  { icon: Briefcase, value: "17", label: "Practical Assignments" },
 ];
 
-const courseModules = [
+const trustChips = [
+  { icon: BookOpen, label: "Live Cohort Learning" },
+  { icon: PenTool, label: "Practical Drafting Exercises" },
+  { icon: Users, label: "Expert Faculty" },
+  { icon: Award, label: "Certificate of Completion" },
+  { icon: Globe, label: "Freelancing Focus" },
+];
+
+const courseHighlights = [
   "NDAs & Confidentiality",
   "Employment Contracts",
   "Service Agreements",
@@ -87,9 +94,9 @@ function Badge({ children, className = "" }) {
   return (
     <motion.div
       {...fadeUp(0)}
-      className={`inline-flex items-center gap-2 rounded-full border border-stone-200 bg-white px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-stone-600 ${className}`}
+      className={`inline-flex items-center gap-2 rounded-full border border-[#e8e4e0] bg-white px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-[#6b6b6b] ${className}`}
     >
-      <Layers className="h-3.5 w-3.5 text-stone-400" />
+      <Star className="h-3.5 w-3.5 fill-[#d4a574] text-[#d4a574]" />
       {children}
     </motion.div>
   );
@@ -100,7 +107,7 @@ function PrimaryButton({ children, icon: Icon, className = "", ...props }) {
     <motion.button
       whileHover={{ scale: 1.02, y: -1 }}
       whileTap={{ scale: 0.98 }}
-      className={`group inline-flex items-center gap-2.5 rounded-lg bg-stone-900 px-7 py-3.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-stone-800 focus:outline-none focus:ring-2 focus:ring-stone-900 focus:ring-offset-2 ${className}`}
+      className={`group inline-flex items-center gap-2.5 rounded-lg bg-[#1a1a1a] px-7 py-3.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-[#b87333] focus:outline-none focus:ring-2 focus:ring-[#b87333] focus:ring-offset-2 ${className}`}
       {...props}
     >
       {children}
@@ -114,7 +121,7 @@ function SecondaryButton({ children, icon: Icon, className = "", ...props }) {
     <motion.button
       whileHover={{ scale: 1.02, y: -1 }}
       whileTap={{ scale: 0.98 }}
-      className={`group inline-flex items-center gap-2.5 rounded-lg border border-stone-200 bg-white px-7 py-3.5 text-sm font-semibold text-stone-700 shadow-sm transition-colors hover:border-stone-300 hover:bg-stone-50 focus:outline-none focus:ring-2 focus:ring-stone-200 focus:ring-offset-2 ${className}`}
+      className={`group inline-flex items-center gap-2.5 rounded-lg border border-[#e8e4e0] bg-white px-7 py-3.5 text-sm font-semibold text-[#3d3d3d] shadow-sm transition-colors hover:border-[#b87333] hover:text-[#b87333] focus:outline-none focus:ring-2 focus:ring-[#e8e4e0] focus:ring-offset-2 ${className}`}
       {...props}
     >
       {children}
@@ -128,9 +135,9 @@ function TrustChip({ chip, index }) {
   return (
     <motion.div
       variants={staggerChild}
-      className="flex items-center gap-2 rounded-full border border-stone-100 bg-stone-50/80 px-3.5 py-2 text-xs font-medium text-stone-600 backdrop-blur-sm"
+      className="flex items-center gap-2 rounded-full border border-[#e8e4e0] bg-white/80 px-3.5 py-2 text-xs font-medium text-[#6b6b6b] backdrop-blur-sm"
     >
-      <Icon className="h-3.5 w-3.5 text-stone-400" />
+      <Icon className="h-3.5 w-3.5 text-[#b87333]" />
       {chip.label}
     </motion.div>
   );
@@ -145,29 +152,29 @@ function ContractPreviewCard() {
       animate={{ opacity: 1, x: 0, y: 0 }}
       transition={{ duration: 0.9, delay: 0.5, ease: EASE_OUT }}
       {...floatSlow}
-      className="absolute -left-4 top-0 z-30 w-64 rounded-xl border border-stone-200 bg-white p-5 shadow-lg shadow-stone-900/5 sm:w-72"
+      className="absolute -left-4 top-0 z-30 w-64 rounded-xl border border-[#e8e4e0] bg-white p-5 shadow-lg shadow-black/5 sm:w-72"
     >
       <div className="mb-4 flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <FileText className="h-4 w-4 text-stone-400" />
-          <span className="text-[10px] font-semibold uppercase tracking-wider text-stone-400">
+          <FileText className="h-4 w-4 text-[#6b6b6b]" />
+          <span className="text-[10px] font-semibold uppercase tracking-wider text-[#6b6b6b]">
             Non-Disclosure Agreement
           </span>
         </div>
-        <span className="rounded-full bg-emerald-50 px-2 py-0.5 text-[10px] font-medium text-emerald-700">
+        <span className="rounded-full bg-[#e8f5ec] px-2 py-0.5 text-[10px] font-medium text-[#2d5a3d]">
           Drafted
         </span>
       </div>
       <div className="space-y-2">
-        <div className="h-1.5 w-full rounded bg-stone-100" />
-        <div className="h-1.5 w-5/6 rounded bg-stone-100" />
-        <div className="h-1.5 w-full rounded bg-stone-100" />
-        <div className="h-1.5 w-3/4 rounded bg-stone-100" />
-        <div className="h-1.5 w-full rounded bg-stone-100" />
+        <div className="h-1.5 w-full rounded bg-[#f5f0eb]" />
+        <div className="h-1.5 w-5/6 rounded bg-[#f5f0eb]" />
+        <div className="h-1.5 w-full rounded bg-[#f5f0eb]" />
+        <div className="h-1.5 w-3/4 rounded bg-[#f5f0eb]" />
+        <div className="h-1.5 w-full rounded bg-[#f5f0eb]" />
       </div>
       <div className="mt-4 flex items-center gap-2">
-        <div className="h-5 w-5 rounded-full bg-stone-200" />
-        <div className="h-1.5 w-20 rounded bg-stone-100" />
+        <div className="h-5 w-5 rounded-full bg-[#f5f0eb]" />
+        <div className="h-1.5 w-20 rounded bg-[#f5f0eb]" />
       </div>
     </motion.div>
   );
@@ -180,11 +187,11 @@ function ClauseCard() {
       animate={{ opacity: 1, x: 0, y: 0 }}
       transition={{ duration: 0.9, delay: 0.7, ease: EASE_OUT }}
       {...floatMedium}
-      className="absolute -right-2 top-24 z-20 w-52 rounded-xl border border-stone-200 bg-white p-4 shadow-lg shadow-stone-900/5 sm:w-60"
+      className="absolute -right-2 top-24 z-20 w-52 rounded-xl border border-[#e8e4e0] bg-white p-4 shadow-lg shadow-black/5 sm:w-60"
     >
       <div className="mb-3 flex items-center gap-2">
-        <ShieldCheck className="h-4 w-4 text-stone-400" />
-        <span className="text-[10px] font-semibold uppercase tracking-wider text-stone-400">
+        <Shield className="h-4 w-4 text-[#6b6b6b]" />
+        <span className="text-[10px] font-semibold uppercase tracking-wider text-[#6b6b6b]">
           Key Clauses
         </span>
       </div>
@@ -196,8 +203,8 @@ function ClauseCard() {
           "Force Majeure",
         ].map((clause, i) => (
           <div key={i} className="flex items-center gap-2">
-            <CheckCircle2 className="h-3.5 w-3.5 text-stone-300" />
-            <span className="text-xs text-stone-600">{clause}</span>
+            <CheckCircle2 className="h-3.5 w-3.5 text-[#d4a574]" />
+            <span className="text-xs text-[#3d3d3d]">{clause}</span>
           </div>
         ))}
       </div>
@@ -212,11 +219,11 @@ function ChecklistCard() {
       animate={{ opacity: 1, x: 0, y: 0 }}
       transition={{ duration: 0.9, delay: 0.9, ease: EASE_OUT }}
       {...floatFast}
-      className="absolute left-8 top-56 z-40 w-48 rounded-xl border border-stone-200 bg-white p-4 shadow-lg shadow-stone-900/5"
+      className="absolute left-8 top-56 z-40 w-48 rounded-xl border border-[#e8e4e0] bg-white p-4 shadow-lg shadow-black/5"
     >
       <div className="mb-3 flex items-center gap-2">
-        <Clock className="h-4 w-4 text-stone-400" />
-        <span className="text-[10px] font-semibold uppercase tracking-wider text-stone-400">
+        <Clock className="h-4 w-4 text-[#6b6b6b]" />
+        <span className="text-[10px] font-semibold uppercase tracking-wider text-[#6b6b6b]">
           Review Checklist
         </span>
       </div>
@@ -230,18 +237,18 @@ function ChecklistCard() {
           <div key={i} className="flex items-center gap-2">
             <div
               className={`flex h-4 w-4 items-center justify-center rounded-full ${
-                item.done ? "bg-emerald-50" : "bg-stone-50"
+                item.done ? "bg-[#e8f5ec]" : "bg-[#f5f0eb]"
               }`}
             >
               {item.done ? (
-                <CheckCircle2 className="h-3 w-3 text-emerald-600" />
+                <CheckCircle2 className="h-3 w-3 text-[#2d5a3d]" />
               ) : (
-                <div className="h-2 w-2 rounded-full bg-stone-300" />
+                <div className="h-2 w-2 rounded-full bg-[#d4a574]" />
               )}
             </div>
             <span
               className={`text-xs ${
-                item.done ? "text-stone-700" : "text-stone-400"
+                item.done ? "text-[#3d3d3d]" : "text-[#6b6b6b]"
               }`}
             >
               {item.label}
@@ -260,26 +267,26 @@ function CertificateCard() {
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ duration: 0.9, delay: 1.1, ease: EASE_OUT }}
       {...floatSlow}
-      className="absolute -right-4 top-64 z-30 w-56 rounded-xl border border-stone-200 bg-white p-4 shadow-lg shadow-stone-900/5 sm:w-64"
+      className="absolute -right-4 top-64 z-30 w-56 rounded-xl border border-[#e8e4e0] bg-white p-4 shadow-lg shadow-black/5 sm:w-64"
     >
       <div className="mb-3 flex items-center gap-3">
-        <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-stone-100">
-          <Award className="h-5 w-5 text-stone-600" />
+        <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#f5f0eb]">
+          <Award className="h-5 w-5 text-[#b87333]" />
         </div>
         <div>
-          <div className="text-xs font-semibold text-stone-900">
+          <div className="text-xs font-semibold text-[#1a1a1a]">
             Certificate
           </div>
-          <div className="text-[10px] text-stone-400">Lawctopus Verified</div>
+          <div className="text-[10px] text-[#6b6b6b]">Lawctopus Verified</div>
         </div>
       </div>
       <div className="space-y-1.5">
-        <div className="h-2 w-3/4 rounded bg-stone-100" />
-        <div className="h-2 w-1/2 rounded bg-stone-100" />
+        <div className="h-2 w-3/4 rounded bg-[#f5f0eb]" />
+        <div className="h-2 w-1/2 rounded bg-[#f5f0eb]" />
       </div>
       <div className="mt-3 flex items-center gap-1.5">
-        <ShieldCheck className="h-3.5 w-3.5 text-emerald-500" />
-        <span className="text-[10px] font-medium text-emerald-600">
+        <FileCheck className="h-3.5 w-3.5 text-[#2d5a3d]" />
+        <span className="text-[10px] font-medium text-[#2d5a3d]">
           Blockchain Verified
         </span>
       </div>
@@ -294,26 +301,26 @@ function FreelanceProjectCard() {
       animate={{ opacity: 1, y: 0, x: 0 }}
       transition={{ duration: 0.9, delay: 1.3, ease: EASE_OUT }}
       {...floatMedium}
-      className="absolute left-0 top-96 z-20 w-56 rounded-xl border border-stone-200 bg-white p-4 shadow-lg shadow-stone-900/5"
+      className="absolute left-0 top-96 z-20 w-56 rounded-xl border border-[#e8e4e0] bg-white p-4 shadow-lg shadow-black/5"
     >
       <div className="mb-3 flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <Briefcase className="h-4 w-4 text-stone-400" />
-          <span className="text-[10px] font-semibold uppercase tracking-wider text-stone-400">
+          <Briefcase className="h-4 w-4 text-[#6b6b6b]" />
+          <span className="text-[10px] font-semibold uppercase tracking-wider text-[#6b6b6b]">
             Freelance Project
           </span>
         </div>
-        <span className="rounded-full bg-amber-50 px-2 py-0.5 text-[10px] font-medium text-amber-700">
+        <span className="rounded-full bg-[#faf8f5] px-2 py-0.5 text-[10px] font-medium text-[#b87333]">
           Active
         </span>
       </div>
-      <div className="text-sm font-semibold text-stone-900">
+      <div className="text-sm font-semibold text-[#1a1a1a]">
         Service Agreement
       </div>
-      <div className="mt-1 text-[10px] text-stone-500">Client: TechStart Pvt. Ltd.</div>
+      <div className="mt-1 text-[10px] text-[#6b6b6b]">Client: TechStart Pvt. Ltd.</div>
       <div className="mt-3 flex items-center justify-between">
-        <span className="text-xs font-semibold text-stone-900">₹45,000</span>
-        <span className="text-[10px] text-stone-400">Due in 3 days</span>
+        <span className="text-xs font-semibold text-[#1a1a1a]">₹45,000</span>
+        <span className="text-[10px] text-[#6b6b6b]">Due in 3 days</span>
       </div>
     </motion.div>
   );
@@ -326,17 +333,17 @@ function ClientApprovalCard() {
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ duration: 0.9, delay: 1.5, ease: EASE_OUT }}
       {...floatFast}
-      className="absolute right-8 top-[28rem] z-40 w-48 rounded-xl border border-emerald-100 bg-emerald-50/80 p-4 shadow-lg shadow-emerald-900/5 backdrop-blur-sm"
+      className="absolute right-8 top-[28rem] z-40 w-48 rounded-xl border border-[#e8f5ec] bg-[#e8f5ec]/80 p-4 shadow-lg shadow-black/5 backdrop-blur-sm"
     >
       <div className="flex items-center gap-2">
-        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-100">
-          <CheckCircle2 className="h-4 w-4 text-emerald-600" />
+        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-white">
+          <CheckCircle2 className="h-4 w-4 text-[#2d5a3d]" />
         </div>
         <div>
-          <div className="text-xs font-semibold text-emerald-900">
+          <div className="text-xs font-semibold text-[#2d5a3d]">
             Client Approved
           </div>
-          <div className="text-[10px] text-emerald-600">Contract finalized</div>
+          <div className="text-[10px] text-[#2d5a3d]/70">Contract finalized</div>
         </div>
       </div>
     </motion.div>
@@ -349,9 +356,9 @@ function ModuleTag({ label, className, delay }) {
       initial={{ opacity: 0, scale: 0.8 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5, delay, ease: EASE_OUT }}
-      className={`absolute z-10 flex items-center gap-1.5 rounded-full border border-stone-200 bg-white/90 px-3 py-1.5 text-[11px] font-medium text-stone-600 shadow-sm backdrop-blur-sm ${className}`}
+      className={`absolute z-10 flex items-center gap-1.5 rounded-full border border-[#e8e4e0] bg-white/90 px-3 py-1.5 text-[11px] font-medium text-[#3d3d3d] shadow-sm backdrop-blur-sm ${className}`}
     >
-      <Zap className="h-3 w-3 text-stone-400" />
+      <Star className="h-3 w-3 text-[#d4a574]" />
       {label}
     </motion.div>
   );
@@ -363,7 +370,6 @@ function ModuleTag({ label, className, delay }) {
 
 export default function Hero() {
   const sectionRef = useRef(null);
-  const isInView = useInView(sectionRef, { once: true, margin: "-80px" });
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end start"],
@@ -386,20 +392,20 @@ export default function Hero() {
   return (
     <section
       ref={sectionRef}
-      className="relative overflow-hidden bg-stone-50"
+      className="relative overflow-hidden bg-[#faf8f5]"
       aria-label="Hero"
     >
       {/* Background layer */}
       <motion.div style={{ y: bgY }} className="absolute inset-0">
-        <div className="pointer-events-none absolute -right-32 -top-32 h-[32rem] w-[32rem] rounded-full bg-stone-200/30 blur-3xl" />
-        <div className="pointer-events-none absolute -bottom-40 -left-32 h-[28rem] w-[28rem] rounded-full bg-stone-200/20 blur-3xl" />
+        <div className="pointer-events-none absolute -right-32 -top-32 h-[32rem] w-[32rem] rounded-full bg-[#f5f0eb]/50 blur-3xl" />
+        <div className="pointer-events-none absolute -bottom-40 -left-32 h-[28rem] w-[28rem] rounded-full bg-[#f5f0eb]/30 blur-3xl" />
       </motion.div>
 
       {/* Subtle dot pattern */}
       <div
-        className="pointer-events-none absolute inset-0 opacity-[0.03]"
+        className="pointer-events-none absolute inset-0 opacity-[0.025]"
         style={{
-          backgroundImage: "radial-gradient(circle, #1c1917 1px, transparent 1px)",
+          backgroundImage: "radial-gradient(circle, #1a1a1a 1px, transparent 1px)",
           backgroundSize: "32px 32px",
         }}
       />
@@ -410,28 +416,29 @@ export default function Hero() {
           {/* Left column */}
           <div className="relative z-10 max-w-xl">
             <Badge>Lawctopus Premium Cohort</Badge>
+            
 
             <motion.h1
               {...fadeUp(0.15)}
-              className="mt-7 text-[2.75rem] font-semibold leading-[1.1] tracking-tight text-stone-900 sm:text-5xl lg:text-[3.5rem]"
+              className="mt-7 text-[2.75rem] font-semibold leading-[1.1] tracking-tight text-[#1a1a1a] sm:text-5xl lg:text-[3.5rem]"
             >
               Master contract drafting.
               <br />
               <span className="relative inline-block">
                 Build a freelance practice
-                <span className="absolute -bottom-1 left-0 h-[3px] w-full rounded-full bg-stone-300/70 sm:-bottom-1.5" />
+                <span className="absolute -bottom-1 left-0 h-[3px] w-full rounded-full bg-[#b87333]/60 sm:-bottom-1.5" />
               </span>
               {" "}that pays.
             </motion.h1>
 
             <motion.p
               {...fadeUp(0.3)}
-              className="mt-6 text-base leading-[1.7] text-stone-500 sm:text-lg"
+              className="mt-6 text-base leading-[1.7] text-[#6b6b6b] sm:text-lg"
             >
-              Learn to draft commercial contracts that hold up in court and
-              impress clients. Work through real agreements with expert mentors.
-              Graduate with a portfolio, a verified certificate, and the
-              confidence to freelance or land better roles.
+              A 6-month expert-level course with 55 live sessions. Draft 24+
+              complex contracts including NDAs, service agreements, and
+              international deals. Get personalized feedback on 17 assignments.
+              Save 4 years of your legal career.
             </motion.p>
 
             {/* CTAs */}
@@ -440,10 +447,10 @@ export default function Hero() {
               className="mt-9 flex flex-col gap-3 sm:flex-row"
             >
               <PrimaryButton icon={ArrowRight}>
-                Enroll Now
+                Enroll Now — ₹24,999
               </PrimaryButton>
-              <SecondaryButton icon={Download}>
-                Download Brochure
+              <SecondaryButton icon={Play}>
+                Watch Our Story
               </SecondaryButton>
             </motion.div>
 
@@ -460,13 +467,13 @@ export default function Hero() {
             {/* Mini social proof */}
             <motion.div
               {...fadeUp(0.7)}
-              className="mt-10 flex items-center gap-4 border-t border-stone-200/60 pt-8"
+              className="mt-10 flex items-center gap-4 border-t border-[#e8e4e0]/60 pt-8"
             >
               <div className="flex -space-x-2">
                 {[1, 2, 3, 4].map((i) => (
                   <div
                     key={i}
-                    className="relative h-8 w-8 overflow-hidden rounded-full border-2 border-stone-50 bg-stone-200"
+                    className="relative h-8 w-8 overflow-hidden rounded-full border-2 border-[#faf8f5] bg-[#f5f0eb]"
                   >
                     <div
                       className="absolute inset-0 bg-cover bg-center"
@@ -477,8 +484,8 @@ export default function Hero() {
                   </div>
                 ))}
               </div>
-              <div className="text-sm text-stone-500">
-                <span className="font-semibold text-stone-900">2,400+</span> lawyers
+              <div className="text-sm text-[#6b6b6b]">
+                <span className="font-semibold text-[#1a1a1a]">2,400+</span> lawyers
                 enrolled in the last cohort
               </div>
             </motion.div>
@@ -527,6 +534,31 @@ export default function Hero() {
             </motion.div>
           </div>
         </div>
+
+        {/* Stats row */}
+        <motion.div
+          {...staggerContainer(0.08, 0.7)}
+          className="mt-16 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5 lg:gap-4"
+        >
+          {stats.map((stat, i) => {
+            const Icon = stat.icon;
+            return (
+              <motion.div
+                key={i}
+                variants={staggerChild}
+                whileHover={{ y: -4, transition: { duration: 0.25 } }}
+                className="group relative overflow-hidden rounded-xl border border-[#e8e4e0] bg-white p-5 shadow-sm transition-shadow hover:shadow-md"
+              >
+                <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-[#f5f0eb] text-[#3d3d3d] transition-colors group-hover:bg-[#1a1a1a] group-hover:text-white">
+                  <Icon className="h-5 w-5" />
+                </div>
+                <div className="text-2xl font-bold tracking-tight text-[#1a1a1a]">{stat.value}</div>
+                <div className="mt-0.5 text-xs font-medium text-[#6b6b6b]">{stat.label}</div>
+                <div className="absolute inset-x-0 bottom-0 h-0.5 bg-[#b87333] opacity-0 transition-opacity group-hover:opacity-100" />
+              </motion.div>
+            );
+          })}
+        </motion.div>
       </div>
     </section>
   );
