@@ -55,7 +55,12 @@ const floatMedium = {
 
 const floatFast = {
   animate: { y: [0, -5, 0] },
-  transition: { duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 },
+  transition: {
+    duration: 3.5,
+    repeat: Infinity,
+    ease: "easeInOut",
+    delay: 0.5,
+  },
 };
 
 /* ──────────────────────────────────────────────────────────────
@@ -317,7 +322,9 @@ function FreelanceProjectCard() {
       <div className="text-sm font-semibold text-[#1a1a1a]">
         Service Agreement
       </div>
-      <div className="mt-1 text-[10px] text-[#6b6b6b]">Client: TechStart Pvt. Ltd.</div>
+      <div className="mt-1 text-[10px] text-[#6b6b6b]">
+        Client: TechStart Pvt. Ltd.
+      </div>
       <div className="mt-3 flex items-center justify-between">
         <span className="text-xs font-semibold text-[#1a1a1a]">₹45,000</span>
         <span className="text-[10px] text-[#6b6b6b]">Due in 3 days</span>
@@ -343,7 +350,9 @@ function ClientApprovalCard() {
           <div className="text-xs font-semibold text-[#2d5a3d]">
             Client Approved
           </div>
-          <div className="text-[10px] text-[#2d5a3d]/70">Contract finalized</div>
+          <div className="text-[10px] text-[#2d5a3d]/70">
+            Contract finalized
+          </div>
         </div>
       </div>
     </motion.div>
@@ -405,7 +414,8 @@ export default function Hero() {
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.025]"
         style={{
-          backgroundImage: "radial-gradient(circle, #1a1a1a 1px, transparent 1px)",
+          backgroundImage:
+            "radial-gradient(circle, #1a1a1a 1px, transparent 1px)",
           backgroundSize: "32px 32px",
         }}
       />
@@ -416,7 +426,16 @@ export default function Hero() {
           {/* Left column */}
           <div className="relative z-10 max-w-xl">
             <Badge>Lawctopus Premium Cohort</Badge>
-            
+
+            <motion.div
+              {...fadeUp(0.08)}
+              className="mt-4 inline-flex items-center gap-2 rounded-lg border border-[#b87333]/20 bg-[#b87333]/5 px-4 py-2 text-sm font-medium text-[#b87333]"
+            >
+              <Calendar className="h-4 w-4" />
+              <span>Next cohort: July 1 – December 31</span>
+              <span className="mx-1 text-[#b87333]/40">|</span>
+              <span className="font-semibold">Register by June 30</span>
+            </motion.div>
 
             <motion.h1
               {...fadeUp(0.15)}
@@ -427,8 +446,8 @@ export default function Hero() {
               <span className="relative inline-block">
                 Build a freelance practice
                 <span className="absolute -bottom-1 left-0 h-[3px] w-full rounded-full bg-[#b87333]/60 sm:-bottom-1.5" />
-              </span>
-              {" "}that pays.
+              </span>{" "}
+              that pays.
             </motion.h1>
 
             <motion.p
@@ -449,9 +468,7 @@ export default function Hero() {
               <PrimaryButton icon={ArrowRight}>
                 Enroll Now — ₹24,999
               </PrimaryButton>
-              <SecondaryButton icon={Play}>
-                Watch Our Story
-              </SecondaryButton>
+              <SecondaryButton icon={Play}>Watch Our Story</SecondaryButton>
             </motion.div>
 
             {/* Trust chips */}
@@ -485,8 +502,8 @@ export default function Hero() {
                 ))}
               </div>
               <div className="text-sm text-[#6b6b6b]">
-                <span className="font-semibold text-[#1a1a1a]">2,400+</span> lawyers
-                enrolled in the last cohort
+                <span className="font-semibold text-[#1a1a1a]">2,400+</span>{" "}
+                lawyers enrolled in the last cohort
               </div>
             </motion.div>
           </div>
@@ -506,11 +523,7 @@ export default function Hero() {
               <ClientApprovalCard />
 
               {/* Module tags floating around */}
-              <ModuleTag
-                label="NDAs"
-                className="right-0 top-0"
-                delay={1.6}
-              />
+              <ModuleTag label="NDAs" className="right-0 top-0" delay={1.6} />
               <ModuleTag
                 label="Employment Contracts"
                 className="left-20 top-40"
@@ -552,8 +565,12 @@ export default function Hero() {
                 <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-[#f5f0eb] text-[#3d3d3d] transition-colors group-hover:bg-[#1a1a1a] group-hover:text-white">
                   <Icon className="h-5 w-5" />
                 </div>
-                <div className="text-2xl font-bold tracking-tight text-[#1a1a1a]">{stat.value}</div>
-                <div className="mt-0.5 text-xs font-medium text-[#6b6b6b]">{stat.label}</div>
+                <div className="text-2xl font-bold tracking-tight text-[#1a1a1a]">
+                  {stat.value}
+                </div>
+                <div className="mt-0.5 text-xs font-medium text-[#6b6b6b]">
+                  {stat.label}
+                </div>
                 <div className="absolute inset-x-0 bottom-0 h-0.5 bg-[#b87333] opacity-0 transition-opacity group-hover:opacity-100" />
               </motion.div>
             );

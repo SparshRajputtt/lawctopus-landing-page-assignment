@@ -46,21 +46,13 @@ import { SocialIcon } from "react-social-icons";
    Animation presets — match Hero.jsx and About.jsx exactly
    ────────────────────────────────────────────────────────────── */
 
-const Instagram = (props) => (
-  <SocialIcon network="instagram" {...props} />
-);
+const Instagram = (props) => <SocialIcon network="instagram" {...props} />;
 
-const Linkedin = (props) => (
-  <SocialIcon network="linkedin" {...props} />
-);
+const Linkedin = (props) => <SocialIcon network="linkedin" {...props} />;
 
-const Youtube = (props) => (
-  <SocialIcon network="youtube" {...props} />
-);
+const Youtube = (props) => <SocialIcon network="youtube" {...props} />;
 
-const Twitter = (props) => (
-  <SocialIcon network="x" {...props} />
-);
+const Twitter = (props) => <SocialIcon network="x" {...props} />;
 
 const EASE_OUT = [0.22, 1, 0.36, 1];
 
@@ -228,7 +220,8 @@ const faculty = [
   {
     name: "Shashank Sardesai",
     designation: "Co-founder, EverTrust Legal",
-    intro: "Ex-Wadia Ghandy, HSA Advocates, Khaitan Legal Associates. Independent litigator and company secretary with deep expertise in partnership deeds, NDAs, and commercial contracts.",
+    intro:
+      "Ex-Wadia Ghandy, HSA Advocates, Khaitan Legal Associates. Independent litigator and company secretary with deep expertise in partnership deeds, NDAs, and commercial contracts.",
     expertise: ["Commercial Contracts", "Litigation", "Corporate Law"],
     experience: "6+ years",
     badges: ["Ex-Wadia Ghandy", "Ex-HSA", "Ex-Khaitan"],
@@ -236,7 +229,8 @@ const faculty = [
   {
     name: "Akanksha Mishra",
     designation: "Head of Lawctopus Law School",
-    intro: "Independent litigator at Bombay High Court. Corporate counsel for BHEL, MyCaptain, Mastersoft ERP. Gold medalist, LLM Constitutional Law. 96.5/100 average rating from 1500+ learners.",
+    intro:
+      "Independent litigator at Bombay High Court. Corporate counsel for BHEL, MyCaptain, Mastersoft ERP. Gold medalist, LLM Constitutional Law. 96.5/100 average rating from 1500+ learners.",
     expertise: ["Contract Drafting", "Real Estate", "Corporate Counsel"],
     experience: "6+ years",
     badges: ["Head LLS", "Gold Medalist", "Bombay HC"],
@@ -244,7 +238,8 @@ const faculty = [
   {
     name: "Pranjal Doshi",
     designation: "Associate, Walker Morris LLP, UK",
-    intro: "Cambridge LLM (2019), HNLU (2018). Ex-Trilegal, ex-Khaitan & Co. Specializes in M&A, private equity, and investment documents including share purchase and shareholders agreements.",
+    intro:
+      "Cambridge LLM (2019), HNLU (2018). Ex-Trilegal, ex-Khaitan & Co. Specializes in M&A, private equity, and investment documents including share purchase and shareholders agreements.",
     expertise: ["M&A", "Private Equity", "Investment Documents"],
     experience: "5+ years",
     badges: ["Cambridge", "Ex-Trilegal", "Ex-Khaitan"],
@@ -252,7 +247,8 @@ const faculty = [
   {
     name: "Arunima Jha",
     designation: "Head Legal Counsel, Omnicom Media Group",
-    intro: "Ex-Legal Counsel at BookMyShow and K Raheja Corp. LLM in Business & Corporate Law. Expert in media law, privacy law, and data security regulations across India and international markets.",
+    intro:
+      "Ex-Legal Counsel at BookMyShow and K Raheja Corp. LLM in Business & Corporate Law. Expert in media law, privacy law, and data security regulations across India and international markets.",
     expertise: ["Media Law", "Privacy Law", "Data Security"],
     experience: "10+ years",
     badges: ["Omnicom", "Ex-BookMyShow", "LLM"],
@@ -260,7 +256,8 @@ const faculty = [
   {
     name: "Gourav Mohanty",
     designation: "Independent Practitioner, Bombay High Court",
-    intro: "Ex-Senior Associate, Shardul Amarchand Mangaldas. Gold medalist, Symbiosis Law School. Ram Jethmalani Scholar. Winner, Linklaters NSLR Contract Drafting Competition.",
+    intro:
+      "Ex-Senior Associate, Shardul Amarchand Mangaldas. Gold medalist, Symbiosis Law School. Ram Jethmalani Scholar. Winner, Linklaters NSLR Contract Drafting Competition.",
     expertise: ["Dispute Resolution", "Contract Drafting", "Corporate"],
     experience: "8+ years",
     badges: ["Ex-SAM", "Gold Medalist", "Ram Jethmalani Scholar"],
@@ -268,10 +265,29 @@ const faculty = [
   {
     name: "Tanuj Kalia",
     designation: "Founding CEO, Lawctopus",
-    intro: "NUJS Kolkata (2013), MA AUD. Author of 'Law as a Career' (LexisNexis). TEDx speaker. Business World Legal 40 under 40. Currently training to be ICF-certified coach.",
+    intro:
+      "NUJS Kolkata (2013), MA AUD. Author of 'Law as a Career' (LexisNexis). TEDx speaker. Business World Legal 40 under 40. Currently training to be ICF-certified coach.",
     expertise: ["Legal Education", "Negotiation", "Career Building"],
     experience: "12+ years",
     badges: ["CEO Lawctopus", "TEDx", "40 Under 40"],
+  },
+];
+
+const courseDevelopers = [
+  {
+    name: "Bhumesh Verma",
+    role: "Recorded Lectures",
+    cred: "25+ years experience. Ex-partner at Khaitan & Co., Paras Kuhad & Associates. Managing Partner at Corp Comm Legal. Author of 'Practical Guide to Drafting Commercial Contracts' (OakBridge).",
+  },
+  {
+    name: "Shayonee Dasgupta",
+    role: "Lead Researcher & Content Developer",
+    cred: "NUJS Kolkata 2012. Ex-Trilegal (2012-15), ex-Shardul Amarchand Mangaldas (Senior Associate 2017-18). Consultant at IDIA. Freelance researcher-writer.",
+  },
+  {
+    name: "Debanshu Khettry",
+    role: "Development of Reading Modules",
+    cred: "NUJS Kolkata 2013, UCL LLM 2014. Founder, Standard Indian Legal Citation (SILC). Angel Investor with Mumbai Angels and Calcutta Angels. Ex-Platinum Partners, Delhi.",
   },
 ];
 
@@ -279,41 +295,73 @@ const testimonials = [
   {
     name: "Aarav Patel",
     position: "3rd Year, NLSIU Bangalore",
-    review: "I went from not knowing how to structure a contract to drafting an NDA for a real startup in week three. The feedback on my drafts was the game changer.",
+    review:
+      "I went from not knowing how to structure a contract to drafting an NDA for a real startup in week three. The feedback on my drafts was the game changer.",
     rating: 5,
     size: "large",
   },
   {
     name: "Sneha Reddy",
     position: "Junior Associate, AZB & Partners",
-    review: "My senior noticed the improvement in my drafting within a month. The practical approach here is unlike anything I learned in law school.",
+    review:
+      "My senior noticed the improvement in my drafting within a month. The practical approach here is unlike anything I learned in law school.",
     rating: 5,
     size: "compact",
   },
   {
     name: "Vikram Joshi",
     position: "Freelance Contract Lawyer",
-    review: "This course gave me the confidence to quit my desk job and freelance. I now have five regular clients and charge three times what I used to earn.",
+    review:
+      "This course gave me the confidence to quit my desk job and freelance. I now have five regular clients and charge three times what I used to earn.",
     rating: 5,
     size: "compact",
   },
   {
     name: "Meera Iyer",
     position: "Fresh Graduate, GLC Mumbai",
-    review: "The portfolio I built during this course got me three interview calls. Every interviewer asked about the contracts I had drafted.",
+    review:
+      "The portfolio I built during this course got me three interview calls. Every interviewer asked about the contracts I had drafted.",
     rating: 5,
     size: "large",
   },
 ];
 
 const timeline = [
-  { step: "01", label: "Enroll", desc: "Secure your seat in the upcoming 6-month cohort" },
-  { step: "02", label: "Attend Live Classes", desc: "55 interactive sessions with expert faculty" },
-  { step: "03", label: "Complete 17 Assignments", desc: "Real contracts, real deadlines, real feedback" },
-  { step: "04", label: "Receive Mentor Feedback", desc: "Line-by-line review from practicing lawyers" },
-  { step: "05", label: "Build Portfolio", desc: "Curate 17 fine-tuned contracts for employers and clients" },
-  { step: "06", label: "Start Freelancing", desc: "Launch on Upwork, Fiverr, and LinkedIn" },
-  { step: "07", label: "Career Growth", desc: "Land better roles or grow your independent practice" },
+  {
+    step: "01",
+    label: "Enroll",
+    desc: "Secure your seat in the upcoming 6-month cohort",
+  },
+  {
+    step: "02",
+    label: "Attend Live Classes",
+    desc: "55 interactive sessions with expert faculty",
+  },
+  {
+    step: "03",
+    label: "Complete 17 Assignments",
+    desc: "Real contracts, real deadlines, real feedback",
+  },
+  {
+    step: "04",
+    label: "Receive Mentor Feedback",
+    desc: "Line-by-line review from practicing lawyers",
+  },
+  {
+    step: "05",
+    label: "Build Portfolio",
+    desc: "Curate 17 fine-tuned contracts for employers and clients",
+  },
+  {
+    step: "06",
+    label: "Start Freelancing",
+    desc: "Launch on Upwork, Fiverr, and LinkedIn",
+  },
+  {
+    step: "07",
+    label: "Career Growth",
+    desc: "Land better roles or grow your independent practice",
+  },
 ];
 
 const careerOutcomes = [
@@ -327,11 +375,31 @@ const careerOutcomes = [
 
 const pricingFeatures = [
   { icon: Video, label: "55 Live Sessions", desc: "Interactive, not recorded" },
-  { icon: MessageSquare, label: "1-on-1 Mentorship", desc: "Bi-monthly coaching calls" },
-  { icon: FileCheck, label: "17 Practical Assignments", desc: "Real contracts, real review" },
-  { icon: Award, label: "Verified Certificate", desc: "Blockchain-backed credential" },
-  { icon: Users, label: "Private Community", desc: "WhatsApp groups for opportunities" },
-  { icon: BookOpen, label: "Lifetime Resources", desc: "Templates, checklists, and guides" },
+  {
+    icon: MessageSquare,
+    label: "1-on-1 Mentorship",
+    desc: "Bi-monthly coaching calls",
+  },
+  {
+    icon: FileCheck,
+    label: "17 Practical Assignments",
+    desc: "Real contracts, real review",
+  },
+  {
+    icon: Award,
+    label: "Verified Certificate",
+    desc: "Blockchain-backed credential",
+  },
+  {
+    icon: Users,
+    label: "Private Community",
+    desc: "WhatsApp groups for opportunities",
+  },
+  {
+    icon: BookOpen,
+    label: "Lifetime Resources",
+    desc: "Templates, checklists, and guides",
+  },
 ];
 
 const comparisonFeatures = [
@@ -350,47 +418,72 @@ const comparisonFeatures = [
 const faqs = [
   {
     question: "Who should join this course?",
-    answer: "Law students, fresh graduates, junior associates, independent lawyers, business professionals, and anyone looking to build practical contract drafting skills or start a freelance legal practice.",
+    answer:
+      "Law students, fresh graduates, junior associates, independent lawyers, business professionals, and anyone looking to build practical contract drafting skills or start a freelance legal practice.",
   },
   {
     question: "Do I need prior experience in contract drafting?",
-    answer: "No. The course starts with fundamentals and builds to advanced drafting. Complete beginners and those with some experience both benefit.",
+    answer:
+      "No. The course starts with fundamentals and builds to advanced drafting. Complete beginners and those with some experience both benefit.",
   },
   {
     question: "Will I receive a certificate?",
-    answer: "Yes. Upon completion, you receive a verified certificate backed by blockchain. It is recognized by law firms and legal employers across India.",
+    answer:
+      "Yes. Upon completion, you receive a verified certificate backed by blockchain. It is recognized by law firms and legal employers across India.",
   },
   {
     question: "Are the sessions recorded?",
-    answer: "Live attendance is strongly encouraged for the interactive experience. Recordings are available for review within 48 hours of each session.",
+    answer:
+      "Live attendance is strongly encouraged for the interactive experience. Recordings are available for review within 48 hours of each session.",
   },
   {
     question: "How long is the course?",
-    answer: "Six months. Two live sessions per week for the first two months, then 7-8 sessions per month for the remaining four months. Expect to dedicate 6-8 hours per week.",
+    answer:
+      "Six months. Two live sessions per week for the first two months, then 7-8 sessions per month for the remaining four months. Expect to dedicate 6-8 hours per week.",
   },
   {
     question: "Will I get assignments?",
-    answer: "Yes. Seventeen practical assignments, each reviewed personally by mentors. This is not a video course — it is a hands-on drafting workshop.",
+    answer:
+      "Yes. Seventeen practical assignments, each reviewed personally by mentors. This is not a video course — it is a hands-on drafting workshop.",
   },
   {
     question: "How does mentoring work?",
-    answer: "Every assignment receives detailed line-by-line feedback. You also get bi-monthly 1-on-1 coaching calls with LLS founders and faculty for personalized career guidance.",
+    answer:
+      "Every assignment receives detailed line-by-line feedback. You also get bi-monthly 1-on-1 coaching calls with LLS founders and faculty for personalized career guidance.",
   },
   {
     question: "Can this help with freelancing?",
-    answer: "Absolutely. Dedicated freelancing modules cover Upwork, Fiverr, LinkedIn, pricing, proposals, and client management. Direct Upwork opportunities are shared with students.",
+    answer:
+      "Absolutely. Dedicated freelancing modules cover Upwork, Fiverr, LinkedIn, pricing, proposals, and client management. Direct Upwork opportunities are shared with students.",
   },
   {
     question: "What is the money-back guarantee?",
-    answer: "Complete the course sincerely (66% attendance, all assignments submitted) and if you feel it added no value, email support@lawctopus.com within 10 days of course completion for a 100% refund. No questions asked.",
+    answer:
+      "Complete the course sincerely (66% attendance, all assignments submitted) and if you feel it added no value, email support@lawctopus.com within 10 days of course completion for a 100% refund. No questions asked.",
   },
 ];
 
 const careerSupport = [
-  { icon: Target, title: "CV & LinkedIn Building", desc: "Draft CVs that get noticed. Build a LinkedIn profile that attracts recruiters." },
-  { icon: MessageSquare, title: "Winning Proposals", desc: "Learn to write proposals that convert on Upwork and directly with clients." },
-  { icon: Users, title: "Exclusive WhatsApp Groups", desc: "Get internship, job, and freelancing opportunities shared only with alumni." },
-  { icon: Phone, title: "Bi-Monthly 1-on-1 Coaching", desc: "30-45 minute career coaching sessions with LLS founders and faculty." },
+  {
+    icon: Target,
+    title: "CV & LinkedIn Building",
+    desc: "Draft CVs that get noticed. Build a LinkedIn profile that attracts recruiters.",
+  },
+  {
+    icon: MessageSquare,
+    title: "Winning Proposals",
+    desc: "Learn to write proposals that convert on Upwork and directly with clients.",
+  },
+  {
+    icon: Users,
+    title: "Exclusive WhatsApp Groups",
+    desc: "Get internship, job, and freelancing opportunities shared only with alumni.",
+  },
+  {
+    icon: Phone,
+    title: "Bi-Monthly 1-on-1 Coaching",
+    desc: "30-45 minute career coaching sessions with LLS founders and faculty.",
+  },
 ];
 
 /* ──────────────────────────────────────────────────────────────
@@ -460,7 +553,10 @@ function CurriculumAccordion() {
   const [openIndex, setOpenIndex] = useState(0);
 
   return (
-    <motion.div {...staggerContainer(0.08, 0.3)} className="mx-auto max-w-3xl space-y-3">
+    <motion.div
+      {...staggerContainer(0.08, 0.3)}
+      className="mx-auto max-w-3xl space-y-3"
+    >
       {modules.map((module, i) => {
         const Icon = module.icon;
         const isOpen = openIndex === i;
@@ -479,7 +575,9 @@ function CurriculumAccordion() {
                 {module.number}
               </span>
               <div className="flex-1">
-                <h3 className="text-base font-semibold text-[#1a1a1a]">{module.title}</h3>
+                <h3 className="text-base font-semibold text-[#1a1a1a]">
+                  {module.title}
+                </h3>
               </div>
               <Icon className="h-5 w-5 text-[#6b6b6b]" />
               <motion.div
@@ -507,7 +605,10 @@ function CurriculumAccordion() {
                         </h4>
                         <ul className="space-y-2">
                           {module.lessons.map((lesson, li) => (
-                            <li key={li} className="flex items-start gap-2.5 text-sm text-[#6b6b6b]">
+                            <li
+                              key={li}
+                              className="flex items-start gap-2.5 text-sm text-[#6b6b6b]"
+                            >
                               <Circle className="mt-1.5 h-1.5 w-1.5 shrink-0 fill-[#d4a574] text-[#d4a574]" />
                               {lesson}
                             </li>
@@ -519,14 +620,18 @@ function CurriculumAccordion() {
                           <PenTool className="h-3.5 w-3.5" />
                           Assignment
                         </h4>
-                        <p className="text-sm text-[#6b6b6b]">{module.assignments[0]}</p>
+                        <p className="text-sm text-[#6b6b6b]">
+                          {module.assignments[0]}
+                        </p>
                       </div>
                       <div>
                         <h4 className="mb-2.5 flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#6b6b6b]">
                           <FileCheck className="h-3.5 w-3.5" />
                           Deliverable
                         </h4>
-                        <p className="text-sm text-[#6b6b6b]">{module.deliverables[0]}</p>
+                        <p className="text-sm text-[#6b6b6b]">
+                          {module.deliverables[0]}
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -564,9 +669,15 @@ function FacultyCard({ member, index }) {
               </span>
             ))}
           </div>
-          <h3 className="text-lg font-semibold text-[#1a1a1a]">{member.name}</h3>
-          <p className="mt-0.5 text-sm font-medium text-[#6b6b6b]">{member.designation}</p>
-          <p className="mt-3 text-sm leading-relaxed text-[#6b6b6b]">{member.intro}</p>
+          <h3 className="text-lg font-semibold text-[#1a1a1a]">
+            {member.name}
+          </h3>
+          <p className="mt-0.5 text-sm font-medium text-[#6b6b6b]">
+            {member.designation}
+          </p>
+          <p className="mt-3 text-sm leading-relaxed text-[#6b6b6b]">
+            {member.intro}
+          </p>
           <div className="mt-4 flex flex-wrap gap-2">
             {member.expertise.map((exp, ei) => (
               <span
@@ -605,7 +716,9 @@ function TestimonialCard({ testimonial, index }) {
           <Star key={i} className="h-4 w-4 fill-[#d4a574] text-[#d4a574]" />
         ))}
       </div>
-      <p className={`leading-relaxed text-[#3d3d3d] ${isLarge ? "text-base" : "text-sm"}`}>
+      <p
+        className={`leading-relaxed text-[#3d3d3d] ${isLarge ? "text-base" : "text-sm"}`}
+      >
         &ldquo;{testimonial.review}&rdquo;
       </p>
       <div className="mt-5 flex items-center gap-3">
@@ -613,7 +726,9 @@ function TestimonialCard({ testimonial, index }) {
           <User className="h-5 w-5 text-[#b87333]" />
         </div>
         <div>
-          <div className="text-sm font-semibold text-[#1a1a1a]">{testimonial.name}</div>
+          <div className="text-sm font-semibold text-[#1a1a1a]">
+            {testimonial.name}
+          </div>
           <div className="text-xs text-[#6b6b6b]">{testimonial.position}</div>
         </div>
       </div>
@@ -639,10 +754,14 @@ function Timeline() {
             className="relative flex gap-5 sm:gap-6"
           >
             <div className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#e8e4e0] bg-white shadow-sm">
-              <span className="text-xs font-bold text-[#b87333]">{item.step}</span>
+              <span className="text-xs font-bold text-[#b87333]">
+                {item.step}
+              </span>
             </div>
             <div className="flex-1 rounded-xl border border-[#e8e4e0] bg-white p-5 shadow-sm">
-              <h3 className="text-base font-semibold text-[#1a1a1a]">{item.label}</h3>
+              <h3 className="text-base font-semibold text-[#1a1a1a]">
+                {item.label}
+              </h3>
               <p className="mt-1 text-sm text-[#6b6b6b]">{item.desc}</p>
             </div>
           </motion.div>
@@ -683,13 +802,30 @@ function PricingCard() {
         </span>
       </div>
       <div className="p-8">
-        <h3 className="text-lg font-semibold text-[#1a1a1a]">Mastering Contract Drafting & Freelancing</h3>
-        <p className="mt-1 text-sm text-[#6b6b6b]">Cohort-based · 6 months · 55 live sessions</p>
+        <h3 className="text-lg font-semibold text-[#1a1a1a]">
+          Mastering Contract Drafting & Freelancing
+        </h3>
+        <p className="mt-1 text-sm text-[#6b6b6b]">
+          Cohort-based · 6 months · 55 live sessions
+        </p>
+        <div className="mt-4 rounded-lg border border-[#b87333]/20 bg-[#b87333]/5 px-4 py-3">
+          <div className="flex items-center gap-2 text-sm font-medium text-[#b87333]">
+            <Calendar className="h-4 w-4" />
+            <span>July 1 – December 31, 2026</span>
+          </div>
+          <div className="mt-1 text-xs text-[#b87333]/80">
+            Register by June 30, 2026. Limited seats available.
+          </div>
+        </div>
         <div className="mt-6 flex items-baseline gap-2">
-          <span className="text-4xl font-bold tracking-tight text-[#1a1a1a]">₹24,999</span>
+          <span className="text-4xl font-bold tracking-tight text-[#1a1a1a]">
+            ₹24,999
+          </span>
           <span className="text-sm text-[#6b6b6b] line-through">₹60,000</span>
         </div>
-        <p className="mt-1 text-xs text-[#6b6b6b]">EMI available starting at ₹4,167/month</p>
+        <p className="mt-1 text-xs text-[#6b6b6b]">
+          EMI available starting at ₹4,167/month
+        </p>
         <div className="mt-8 space-y-3">
           {pricingFeatures.map((feature, i) => {
             const Icon = feature.icon;
@@ -699,7 +835,9 @@ function PricingCard() {
                   <Icon className="h-4 w-4 text-[#b87333]" />
                 </div>
                 <div>
-                  <div className="text-sm font-medium text-[#1a1a1a]">{feature.label}</div>
+                  <div className="text-sm font-medium text-[#1a1a1a]">
+                    {feature.label}
+                  </div>
                   <div className="text-xs text-[#6b6b6b]">{feature.desc}</div>
                 </div>
               </div>
@@ -736,12 +874,16 @@ function ComparisonTable() {
         <div
           key={i}
           className={`grid grid-cols-3 px-6 py-3.5 text-sm ${
-            i !== comparisonFeatures.length - 1 ? "border-b border-[#f5f0eb]" : ""
+            i !== comparisonFeatures.length - 1
+              ? "border-b border-[#f5f0eb]"
+              : ""
           }`}
         >
           <div className="font-medium text-[#3d3d3d]">{feature.label}</div>
           <div className="text-center text-[#6b6b6b]">{feature.short}</div>
-          <div className={`text-center font-semibold ${feature.label === "Price" ? "text-[#b87333]" : "text-[#1a1a1a]"}`}>
+          <div
+            className={`text-center font-semibold ${feature.label === "Price" ? "text-[#b87333]" : "text-[#1a1a1a]"}`}
+          >
             {feature.long}
           </div>
         </div>
@@ -765,7 +907,9 @@ function CareerSupportCard({ item, index }) {
       </div>
       <div>
         <h3 className="text-sm font-semibold text-[#1a1a1a]">{item.title}</h3>
-        <p className="mt-1 text-sm leading-relaxed text-[#6b6b6b]">{item.desc}</p>
+        <p className="mt-1 text-sm leading-relaxed text-[#6b6b6b]">
+          {item.desc}
+        </p>
       </div>
     </motion.div>
   );
@@ -777,7 +921,10 @@ function FAQAccordion() {
   const [openIndex, setOpenIndex] = useState(-1);
 
   return (
-    <motion.div {...staggerContainer(0.06, 0.3)} className="mx-auto max-w-3xl space-y-3">
+    <motion.div
+      {...staggerContainer(0.06, 0.3)}
+      className="mx-auto max-w-3xl space-y-3"
+    >
       {faqs.map((faq, i) => {
         const isOpen = openIndex === i;
         return (
@@ -791,7 +938,9 @@ function FAQAccordion() {
               className="flex w-full items-center gap-4 p-5 text-left transition-colors hover:bg-[#faf8f5]/50"
               aria-expanded={isOpen}
             >
-              <span className="flex-1 text-base font-medium text-[#1a1a1a]">{faq.question}</span>
+              <span className="flex-1 text-base font-medium text-[#1a1a1a]">
+                {faq.question}
+              </span>
               <motion.div
                 animate={{ rotate: isOpen ? 180 : 0 }}
                 transition={{ duration: 0.25 }}
@@ -809,7 +958,9 @@ function FAQAccordion() {
                   className="overflow-hidden"
                 >
                   <div className="border-t border-[#f5f0eb] px-5 pb-5 pt-4">
-                    <p className="text-sm leading-relaxed text-[#6b6b6b]">{faq.answer}</p>
+                    <p className="text-sm leading-relaxed text-[#6b6b6b]">
+                      {faq.answer}
+                    </p>
                   </div>
                 </motion.div>
               )}
@@ -832,11 +983,14 @@ function MoneyBackGuarantee() {
       <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-white">
         <ShieldCheck className="h-6 w-6 text-[#2d5a3d]" />
       </div>
-      <h3 className="text-xl font-semibold text-[#2d5a3d]">100% Money-Back Guarantee</h3>
+      <h3 className="text-xl font-semibold text-[#2d5a3d]">
+        100% Money-Back Guarantee
+      </h3>
       <p className="mt-3 text-sm leading-relaxed text-[#3d3d3d]">
-        Complete the course sincerely — attend 66% of live classes with video on, submit all 17 assignments,
-        and pass each one. If you still feel it added no value to your career, email us within 10 days of
-        course completion. We&apos;ll refund 100% of your fee. No questions asked.
+        Complete the course sincerely — attend 66% of live classes with video
+        on, submit all 17 assignments, and pass each one. If you still feel it
+        added no value to your career, email us within 10 days of course
+        completion. We&apos;ll refund 100% of your fee. No questions asked.
       </p>
     </motion.div>
   );
@@ -853,13 +1007,17 @@ export default function Course() {
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.02]"
         style={{
-          backgroundImage: "radial-gradient(circle, #1a1a1a 1px, transparent 1px)",
+          backgroundImage:
+            "radial-gradient(circle, #1a1a1a 1px, transparent 1px)",
           backgroundSize: "32px 32px",
         }}
       />
 
       {/* ── 1. Curriculum ── */}
-      <div id="curriculum" className="mx-auto max-w-7xl px-5 py-24 sm:px-6 lg:px-8">
+      <div
+        id="curriculum"
+        className="mx-auto max-w-7xl px-5 py-24 sm:px-6 lg:px-8"
+      >
         <SectionHeader
           eyebrow="The Curriculum"
           title="What you'll learn, month by month"
@@ -891,8 +1049,49 @@ export default function Course() {
         </div>
       </div>
 
+      {/* ── Course Developers ── */}
+      <div className="border-t border-[#e8e4e0]/60 bg-[#faf8f5]">
+        <div className="mx-auto max-w-7xl px-5 py-24 sm:px-6 lg:px-8">
+          <SectionHeader
+            eyebrow="Behind the Content"
+            title="Course developers"
+            subtitle="The curriculum is built by lawyers who have practiced at India's top firms and studied at world's best universities."
+            delay={0}
+          />
+          <motion.div
+            {...staggerContainer(0.1, 0.3)}
+            className="mt-16 grid gap-4 sm:grid-cols-3"
+          >
+            {courseDevelopers.map((dev, i) => (
+              <motion.div
+                key={i}
+                variants={staggerChild}
+                whileHover={{ y: -3, transition: { duration: 0.2 } }}
+                className="rounded-xl border border-[#e8e4e0] bg-white p-6 shadow-sm transition-shadow hover:shadow-md"
+              >
+                <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-[#f5f0eb]">
+                  <PenTool className="h-5 w-5 text-[#b87333]" />
+                </div>
+                <h3 className="text-base font-semibold text-[#1a1a1a]">
+                  {dev.name}
+                </h3>
+                <p className="mt-0.5 text-xs font-medium uppercase tracking-wider text-[#b87333]">
+                  {dev.role}
+                </p>
+                <p className="mt-3 text-sm leading-relaxed text-[#6b6b6b]">
+                  {dev.cred}
+                </p>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </div>
+
       {/* ── 3. Student Success ── */}
-      <div id="testimonials" className="border-t border-[#e8e4e0]/60 bg-[#faf8f5]">
+      <div
+        id="testimonials"
+        className="border-t border-[#e8e4e0]/60 bg-[#faf8f5]"
+      >
         <div className="mx-auto max-w-7xl px-5 py-24 sm:px-6 lg:px-8">
           <SectionHeader
             eyebrow="Student Success"
@@ -966,6 +1165,41 @@ export default function Course() {
         </div>
       </div>
 
+      {/* ── Add-on Benefits ── */}
+      <div className="border-t border-[#e8e4e0]/60 bg-white">
+        <div className="mx-auto max-w-7xl px-5 py-24 sm:px-6 lg:px-8">
+          <SectionHeader
+            eyebrow="Extras"
+            title="Add-on benefits"
+            subtitle="What you get beyond the core curriculum."
+            delay={0}
+          />
+          <motion.div
+            {...staggerContainer(0.06, 0.3)}
+            className="mx-auto mt-16 grid max-w-3xl gap-3"
+          >
+            {[
+              "Completion certificate from Lawctopus Law School",
+              "Merit certificates for best-performing learners",
+              "Free access to webinars on contract drafting and CLM",
+              "LLS alumni group for exclusive internship/job notifications",
+              "Discounts on future courses and workshops",
+            ].map((text, i) => (
+              <motion.div
+                key={i}
+                variants={staggerChild}
+                className="flex items-start gap-4 rounded-xl border border-[#e8e4e0] bg-white p-5 shadow-sm"
+              >
+                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#f5f0eb]">
+                  <CheckCircle2 className="h-4 w-4 text-[#b87333]" />
+                </div>
+                <p className="text-base font-medium text-[#3d3d3d]">{text}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </div>
+
       {/* ── 7. Pricing ── */}
       <div id="pricing" className="border-t border-[#e8e4e0]/60 bg-[#faf8f5]">
         <div className="mx-auto max-w-7xl px-5 py-24 sm:px-6 lg:px-8">
@@ -1021,7 +1255,9 @@ export default function Course() {
               ?
             </h2>
             <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-[#6b6b6b] sm:text-lg">
-              The next cohort begins soon. Seats are limited and fill quickly. Join lawyers who are building real skills, not just collecting certificates.
+              The next cohort begins soon. Seats are limited and fill quickly.
+              Join lawyers who are building real skills, not just collecting
+              certificates.
             </p>
             <div className="mt-10 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
               <PrimaryButton icon={ArrowRight}>

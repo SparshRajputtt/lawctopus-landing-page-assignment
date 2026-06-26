@@ -29,6 +29,7 @@ import {
   Sparkles,
   Building2,
   Landmark,
+  Wallet,
 } from "lucide-react";
 
 /* ──────────────────────────────────────────────────────────────
@@ -141,6 +142,39 @@ const differentiators = [
   },
 ];
 
+const howItHelps = [
+  {
+    icon: Briefcase,
+    title: "Ace Law Firm Internships",
+    desc: "Walk into internships with drafting skills that seniors notice immediately.",
+  },
+  {
+    icon: Wallet,
+    title: "Earn as a Freelancer",
+    desc: "Learn to price, propose, and deliver contract work on Upwork, Fiverr, and LinkedIn.",
+  },
+  {
+    icon: Globe,
+    title: "Handle International Contracts",
+    desc: "Understand arbitration, governing law, and cross-border agreements.",
+  },
+  {
+    icon: TrendingUp,
+    title: "Save 4 Years of Career",
+    desc: "What a lawyer learns in 4-5 years of practice, you'll master in 6 months.",
+  },
+  {
+    icon: MessageSquare,
+    title: "Negotiate Everything",
+    desc: "From salaries to M&A deals to apartment hunting — negotiate with confidence.",
+  },
+  {
+    icon: Award,
+    title: "Build a Standout Portfolio",
+    desc: "17 fine-tuned contracts + optimized CV + LinkedIn profile that gets interview calls.",
+  },
+];
+
 const beforeAfter = {
   before: [
     "Unsure how contracts actually work in practice",
@@ -159,23 +193,79 @@ const beforeAfter = {
 };
 
 const journeySteps = [
-  { month: "Month 1", label: "Essential Clauses", desc: "Contract structure, key clauses, and legal language foundations." },
-  { month: "Month 2", label: "Execution & Negotiation", desc: "Execution formalities, stamp duty, and basic negotiation skills." },
-  { month: "Month 3", label: "International Agreements", desc: "Cross-border contracts, governing law, and advanced negotiation." },
-  { month: "Month 4", label: "IP & Tech Contracts", desc: "Trademark, patent, copyright licensing, SaaS, and website terms." },
-  { month: "Month 5", label: "Real Estate", desc: "Sale deeds, leave and license, power of attorney, franchisee agreements." },
-  { month: "Month 6", label: "Business & Commercial", desc: "Shareholders agreements, joint ventures, partnership deeds, M&A basics." },
+  {
+    month: "Month 1",
+    label: "Essential Clauses",
+    desc: "Contract structure, key clauses, and legal language foundations.",
+  },
+  {
+    month: "Month 2",
+    label: "Execution & Negotiation",
+    desc: "Execution formalities, stamp duty, and basic negotiation skills.",
+  },
+  {
+    month: "Month 3",
+    label: "International Agreements",
+    desc: "Cross-border contracts, governing law, and advanced negotiation.",
+  },
+  {
+    month: "Month 4",
+    label: "IP & Tech Contracts",
+    desc: "Trademark, patent, copyright licensing, SaaS, and website terms.",
+  },
+  {
+    month: "Month 5",
+    label: "Real Estate",
+    desc: "Sale deeds, leave and license, power of attorney, franchisee agreements.",
+  },
+  {
+    month: "Month 6",
+    label: "Business & Commercial",
+    desc: "Shareholders agreements, joint ventures, partnership deeds, M&A basics.",
+  },
 ];
 
 const curriculum = [
-  { icon: FileText, title: "NDAs & Confidentiality", desc: "Draft ironclad non-disclosure agreements for any industry." },
-  { icon: Handshake, title: "Service Agreements", desc: "Master the most common contract in freelance legal work." },
-  { icon: Briefcase, title: "Employment Contracts", desc: "Understand terms, restrictions, ESOPs, and employer obligations." },
-  { icon: Layers, title: "Commercial Contracts", desc: "Supply, distribution, vendor, and business transfer agreements." },
-  { icon: Shield, title: "IP Licensing", desc: "Trademark, patent, and copyright licensing and assignment." },
-  { icon: Globe, title: "International Contracts", desc: "Cross-border agreements, arbitration clauses, and governing law." },
-  { icon: Mail, title: "Website Terms & Policies", desc: "Terms of use, privacy policy, return and refund policies." },
-  { icon: Landmark, title: "Real Estate Agreements", desc: "Sale deeds, leave and license, power of attorney, franchisee." },
+  {
+    icon: FileText,
+    title: "NDAs & Confidentiality",
+    desc: "Draft ironclad non-disclosure agreements for any industry.",
+  },
+  {
+    icon: Handshake,
+    title: "Service Agreements",
+    desc: "Master the most common contract in freelance legal work.",
+  },
+  {
+    icon: Briefcase,
+    title: "Employment Contracts",
+    desc: "Understand terms, restrictions, ESOPs, and employer obligations.",
+  },
+  {
+    icon: Layers,
+    title: "Commercial Contracts",
+    desc: "Supply, distribution, vendor, and business transfer agreements.",
+  },
+  {
+    icon: Shield,
+    title: "IP Licensing",
+    desc: "Trademark, patent, and copyright licensing and assignment.",
+  },
+  {
+    icon: Globe,
+    title: "International Contracts",
+    desc: "Cross-border agreements, arbitration clauses, and governing law.",
+  },
+  {
+    icon: Mail,
+    title: "Website Terms & Policies",
+    desc: "Terms of use, privacy policy, return and refund policies.",
+  },
+  {
+    icon: Landmark,
+    title: "Real Estate Agreements",
+    desc: "Sale deeds, leave and license, power of attorney, franchisee.",
+  },
 ];
 
 const outcomes = [
@@ -254,7 +344,9 @@ function DifferentiatorCard({ item, index }) {
       </div>
       <div>
         <h3 className="text-sm font-semibold text-[#1a1a1a]">{item.title}</h3>
-        <p className="mt-1 text-sm leading-relaxed text-[#6b6b6b]">{item.desc}</p>
+        <p className="mt-1 text-sm leading-relaxed text-[#6b6b6b]">
+          {item.desc}
+        </p>
       </div>
     </motion.div>
   );
@@ -267,14 +359,22 @@ function BeforeAfterSection() {
       className="grid gap-8 lg:grid-cols-3 lg:gap-6"
     >
       {/* Before */}
-      <motion.div variants={staggerChild} className="rounded-xl border border-red-100 bg-red-50/30 p-6">
+      <motion.div
+        variants={staggerChild}
+        className="rounded-xl border border-red-100 bg-red-50/30 p-6"
+      >
         <div className="mb-5 flex items-center gap-2">
           <XCircle className="h-5 w-5 text-red-400" />
-          <h3 className="text-sm font-semibold uppercase tracking-wider text-red-800">Before Joining</h3>
+          <h3 className="text-sm font-semibold uppercase tracking-wider text-red-800">
+            Before Joining
+          </h3>
         </div>
         <ul className="space-y-3">
           {beforeAfter.before.map((item, i) => (
-            <li key={i} className="flex items-start gap-3 text-sm text-[#6b6b6b]">
+            <li
+              key={i}
+              className="flex items-start gap-3 text-sm text-[#6b6b6b]"
+            >
               <XCircle className="mt-0.5 h-4 w-4 shrink-0 text-red-300" />
               <span>{item}</span>
             </li>
@@ -283,10 +383,15 @@ function BeforeAfterSection() {
       </motion.div>
 
       {/* Journey */}
-      <motion.div variants={staggerChild} className="relative rounded-xl border border-[#e8e4e0] bg-white p-6">
+      <motion.div
+        variants={staggerChild}
+        className="relative rounded-xl border border-[#e8e4e0] bg-white p-6"
+      >
         <div className="mb-5 flex items-center gap-2">
           <Sparkles className="h-5 w-5 text-[#b87333]" />
-          <h3 className="text-sm font-semibold uppercase tracking-wider text-[#3d3d3d]">6-Month Journey</h3>
+          <h3 className="text-sm font-semibold uppercase tracking-wider text-[#3d3d3d]">
+            6-Month Journey
+          </h3>
         </div>
         <div className="relative space-y-0">
           {/* Vertical line */}
@@ -297,8 +402,12 @@ function BeforeAfterSection() {
                 <div className="h-2 w-2 rounded-full bg-[#b87333]" />
               </div>
               <div>
-                <div className="text-[11px] font-semibold uppercase tracking-wider text-[#b87333]">{step.month}</div>
-                <div className="mt-0.5 text-sm font-semibold text-[#1a1a1a]">{step.label}</div>
+                <div className="text-[11px] font-semibold uppercase tracking-wider text-[#b87333]">
+                  {step.month}
+                </div>
+                <div className="mt-0.5 text-sm font-semibold text-[#1a1a1a]">
+                  {step.label}
+                </div>
                 <div className="mt-1 text-sm text-[#6b6b6b]">{step.desc}</div>
               </div>
             </div>
@@ -307,14 +416,22 @@ function BeforeAfterSection() {
       </motion.div>
 
       {/* After */}
-      <motion.div variants={staggerChild} className="rounded-xl border border-[#e8f5ec] bg-[#e8f5ec]/30 p-6">
+      <motion.div
+        variants={staggerChild}
+        className="rounded-xl border border-[#e8f5ec] bg-[#e8f5ec]/30 p-6"
+      >
         <div className="mb-5 flex items-center gap-2">
           <CheckCircle2 className="h-5 w-5 text-[#2d5a3d]" />
-          <h3 className="text-sm font-semibold uppercase tracking-wider text-[#2d5a3d]">After Completing</h3>
+          <h3 className="text-sm font-semibold uppercase tracking-wider text-[#2d5a3d]">
+            After Completing
+          </h3>
         </div>
         <ul className="space-y-3">
           {beforeAfter.after.map((item, i) => (
-            <li key={i} className="flex items-start gap-3 text-sm text-[#3d3d3d]">
+            <li
+              key={i}
+              className="flex items-start gap-3 text-sm text-[#3d3d3d]"
+            >
               <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[#2d5a3d]" />
               <span className="font-medium">{item}</span>
             </li>
@@ -367,7 +484,8 @@ export default function About() {
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.02]"
         style={{
-          backgroundImage: "radial-gradient(circle, #1a1a1a 1px, transparent 1px)",
+          backgroundImage:
+            "radial-gradient(circle, #1a1a1a 1px, transparent 1px)",
           backgroundSize: "32px 32px",
         }}
       />
@@ -387,6 +505,44 @@ export default function About() {
           {audienceCards.map((card, i) => (
             <AudienceCard key={i} card={card} index={i} />
           ))}
+        </motion.div>
+      </div>
+
+      {/* ── How This Course Helps You ── */}
+      <div className="mx-auto max-w-7xl px-5 py-24 sm:px-6 lg:px-8">
+        <SectionHeader
+          eyebrow="Career Impact"
+          title="How this course will help you"
+          subtitle="Specific outcomes for every stage of your legal career."
+          delay={0}
+        />
+        <motion.div
+          {...staggerContainer(0.08, 0.3)}
+          className="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
+        >
+          {howItHelps.map((item, i) => {
+            const Icon = item.icon;
+            return (
+              <motion.div
+                key={i}
+                variants={staggerChild}
+                whileHover={{ y: -3, transition: { duration: 0.2 } }}
+                className="flex gap-4 rounded-xl border border-[#e8e4e0] bg-white p-5 shadow-sm transition-shadow hover:shadow-md"
+              >
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[#f5f0eb] text-[#b87333]">
+                  <Icon className="h-5 w-5" />
+                </div>
+                <div>
+                  <h3 className="text-sm font-semibold text-[#1a1a1a]">
+                    {item.title}
+                  </h3>
+                  <p className="mt-1 text-sm leading-relaxed text-[#6b6b6b]">
+                    {item.desc}
+                  </p>
+                </div>
+              </motion.div>
+            );
+          })}
         </motion.div>
       </div>
 
@@ -435,7 +591,15 @@ export default function About() {
             delay={0}
           />
           <motion.div
-            {...staggerContainer(0.08, 0.3)}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-40px" }}
+            variants={{
+              hidden: {},
+              visible: {
+                transition: { staggerChildren: 0.08, delayChildren: 0.3 },
+              },
+            }}
             className="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-4"
           >
             {curriculum.map((item, i) => (
