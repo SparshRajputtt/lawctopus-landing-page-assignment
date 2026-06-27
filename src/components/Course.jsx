@@ -51,6 +51,8 @@ import Bhumesh from "../assets/Bhumesh-Varma_Faculty_0017_Group-4.webp";
 import Debanshu from "../assets/Debanshu-Khettry-Faculty_0015_Group-6.webp";
 import Shayonee from "../assets/Shayonee-Dasgupta_Faculty_0012_Group-9.webp";
 
+import TimelineSection from './TimelineSection.jsx';
+
 /* ──────────────────────────────────────────────────────────────
    Animation presets — match Hero.jsx and About.jsx exactly
    ────────────────────────────────────────────────────────────── */
@@ -344,43 +346,43 @@ const testimonials = [
   },
 ];
 
-const timeline = [
-  {
-    step: "01",
-    label: "Enroll",
-    desc: "Secure your seat in the upcoming 6-month cohort",
-  },
-  {
-    step: "02",
-    label: "Attend Live Classes",
-    desc: "55 interactive sessions with expert faculty",
-  },
-  {
-    step: "03",
-    label: "Complete 17 Assignments",
-    desc: "Real contracts, real deadlines, real feedback",
-  },
-  {
-    step: "04",
-    label: "Receive Mentor Feedback",
-    desc: "Line-by-line review from practicing lawyers",
-  },
-  {
-    step: "05",
-    label: "Build Portfolio",
-    desc: "Curate 17 fine-tuned contracts for employers and clients",
-  },
-  {
-    step: "06",
-    label: "Start Freelancing",
-    desc: "Launch on Upwork, Fiverr, and LinkedIn",
-  },
-  {
-    step: "07",
-    label: "Career Growth",
-    desc: "Land better roles or grow your independent practice",
-  },
-];
+// const timeline = [
+//   {
+//     step: "01",
+//     label: "Enroll",
+//     desc: "Secure your seat in the upcoming 6-month cohort",
+//   },
+//   {
+//     step: "02",
+//     label: "Attend Live Classes",
+//     desc: "55 interactive sessions with expert faculty",
+//   },
+//   {
+//     step: "03",
+//     label: "Complete 17 Assignments",
+//     desc: "Real contracts, real deadlines, real feedback",
+//   },
+//   {
+//     step: "04",
+//     label: "Receive Mentor Feedback",
+//     desc: "Line-by-line review from practicing lawyers",
+//   },
+//   {
+//     step: "05",
+//     label: "Build Portfolio",
+//     desc: "Curate 17 fine-tuned contracts for employers and clients",
+//   },
+//   {
+//     step: "06",
+//     label: "Start Freelancing",
+//     desc: "Launch on Upwork, Fiverr, and LinkedIn",
+//   },
+//   {
+//     step: "07",
+//     label: "Career Growth",
+//     desc: "Land better roles or grow your independent practice",
+//   },
+// ];
 
 const careerOutcomes = [
   "Draft 24+ professional contracts that hold up in practice",
@@ -680,7 +682,7 @@ function FacultyCard({ member, index }) {
               <img
                 src={member.image}
                 alt={member.name}
-                className="h-full w-full object-cover object-top transition duration-500 sm:grayscale sm:group-hover:scale-105 sm:group-hover:grayscale-0"
+                className="h-full w-full object-cover object-top transition duration-500 xl:grayscale xl:group-hover:scale-105 xl:group-hover:grayscale-0"
               />
             ) : (
               <User className="h-10 w-10 text-[#d4a574]" />
@@ -769,38 +771,8 @@ function TestimonialCard({ testimonial, index }) {
 
 /* ─── Timeline ─── */
 
-function Timeline() {
-  return (
-    <motion.div
-      {...staggerContainer(0.1, 0.3)}
-      className="relative mx-auto max-w-3xl"
-    >
-      {/* Vertical line */}
-      <div className="absolute left-[19px] top-2 bottom-2 hidden w-px bg-[#e8e4e0] sm:block" />
-      <div className="space-y-6">
-        {timeline.map((item, i) => (
-          <motion.div
-            key={i}
-            variants={staggerChild}
-            className="relative flex gap-5 sm:gap-6"
-          >
-            <div className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#e8e4e0] bg-white shadow-sm">
-              <span className="text-xs font-bold text-[#b87333]">
-                {item.step}
-              </span>
-            </div>
-            <div className="flex-1 rounded-xl border border-[#e8e4e0] bg-white p-5 shadow-sm">
-              <h3 className="text-base font-semibold text-[#1a1a1a]">
-                {item.label}
-              </h3>
-              <p className="mt-1 text-sm text-[#6b6b6b]">{item.desc}</p>
-            </div>
-          </motion.div>
-        ))}
-      </div>
-    </motion.div>
-  );
-}
+// Made a external file for this one
+// import Timeline from "./Timeline";
 
 /* ─── Outcome Item ─── */
 
@@ -1148,14 +1120,14 @@ export default function Course() {
       {/* ── 4. Learning Experience ── */}
       <div className="border-t border-[#e8e4e0]/60 bg-white">
         <div className="mx-auto max-w-7xl px-5 py-24 sm:px-6 lg:px-8">
-          <SectionHeader
+          {/* <SectionHeader
             eyebrow="The Journey"
             title="Your learning experience"
             subtitle="From enrollment to career growth. Every step is designed for practical skill building."
             delay={0}
-          />
+          /> */}
           <div className="mt-16">
-            <Timeline />
+            <TimelineSection />
           </div>
         </div>
       </div>

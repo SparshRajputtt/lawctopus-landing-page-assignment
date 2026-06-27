@@ -19,21 +19,13 @@ import { SocialIcon } from "react-social-icons";
    Animation presets — match Hero, About, Course, Navbar exactly
    ────────────────────────────────────────────────────────────── */
 
-const Instagram = (props) => (
-  <SocialIcon network="instagram" {...props} />
-);
+const Instagram = (props) => <SocialIcon network="instagram" {...props} />;
 
-const Linkedin = (props) => (
-  <SocialIcon network="linkedin" {...props} />
-);
+const Linkedin = (props) => <SocialIcon network="linkedin" {...props} />;
 
-const Youtube = (props) => (
-  <SocialIcon network="youtube" {...props} />
-);
+const Youtube = (props) => <SocialIcon network="youtube" {...props} />;
 
-const Twitter = (props) => (
-  <SocialIcon network="x" {...props} />
-);
+const Twitter = (props) => <SocialIcon network="x" {...props} />;
 
 const EASE_OUT = [0.22, 1, 0.36, 1];
 
@@ -81,16 +73,24 @@ const courseInfo = [
 ];
 
 const contact = [
-  { icon: Mail, label: "courses@lawctopus.com", href: "mailto:courses@lawctopus.com" },
+  {
+    icon: Mail,
+    label: "courses@lawctopus.com",
+    href: "mailto:courses@lawctopus.com",
+  },
   { icon: Phone, label: "+91 98765 43210", href: "tel:+919876543210" },
-  { icon: Globe, label: "www.lawctopus.com", href: "https://www.lawctopus.com" },
+  {
+    icon: Globe,
+    label: "www.lawctopus.com",
+    href: "https://www.lawctopus.com",
+  },
 ];
 
 const socials = [
-  { icon: Linkedin, label: "LinkedIn", href: "https://linkedin.com" },
-  { icon: Instagram, label: "Instagram", href: "https://instagram.com" },
-  { icon: Youtube, label: "YouTube", href: "https://youtube.com" },
-  { icon: Twitter, label: "X", href: "https://x.com" },
+  { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/company/lawctopus" },
+  { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/lawctopus.official/" },
+  { icon: Youtube, label: "YouTube", href: "https://www.youtube.com/@LawctopusOfficial" },
+  { icon: Twitter, label: "X", href: "https://x.com/Lawctopus" },
 ];
 
 const legalLinks = [
@@ -116,12 +116,16 @@ function handleNavClick(href) {
 
 export default function Footer() {
   return (
-    <footer className="relative border-t border-[#e8e4e0]/60 bg-white" aria-label="Footer">
+    <footer
+      className="relative border-t border-[#e8e4e0]/60 bg-white"
+      aria-label="Footer"
+    >
       {/* Subtle dot pattern — matches Hero, About, Course */}
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.02]"
         style={{
-          backgroundImage: "radial-gradient(circle, #1a1a1a 1px, transparent 1px)",
+          backgroundImage:
+            "radial-gradient(circle, #1a1a1a 1px, transparent 1px)",
           backgroundSize: "32px 32px",
         }}
       />
@@ -144,9 +148,9 @@ export default function Footer() {
               <span>Lawctopus</span>
             </a>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-[#6b6b6b]">
-              India&apos;s largest legal education platform. We build practical skills
-              for law students and young lawyers through live mentorship and
-              real-world training.
+              India&apos;s largest legal education platform. We build practical
+              skills for law students and young lawyers through live mentorship
+              and real-world training.
             </p>
             <p className="mt-3 max-w-xs text-sm leading-relaxed text-[#6b6b6b]/70">
               No theory. No filler. Just skills that advance your career.
@@ -227,19 +231,26 @@ export default function Footer() {
             </ul>
 
             {/* Social Links */}
-            <div className="mt-6 flex items-center gap-2">
+            <div className="mt-6 flex items-center gap-3">
               {socials.map((social, i) => {
                 const Icon = social.icon;
+
                 return (
                   <motion.a
                     key={i}
                     href={social.href}
-                    whileHover={{ scale: 1.08, y: -1 }}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.12, y: -2 }}
                     whileTap={{ scale: 0.96 }}
-                    className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#e8e4e0] text-[#6b6b6b] transition-colors hover:border-[#b87333] hover:bg-[#faf8f5] hover:text-[#b87333]"
+                    className="text-[#6b6b6b] transition-colors hover:text-[#b87333]"
                     aria-label={social.label}
                   >
-                    <Icon className="h-4 w-4" />
+                    <Icon
+                      style={{ width: 32, height: 32 }}
+                      bgColor="transparent"
+                      fgColor="currentColor"
+                    />
                   </motion.a>
                 );
               })}
