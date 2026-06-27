@@ -3,10 +3,12 @@ import Hero from "./components/Hero";
 import About from "./components/About";
 import Course from "./components/Course";
 import Footer from "./components/Footer";
+import CustomCursor from "./components/CustomCursor";
 
 function App() {
   return (
     <div className="min-h-screen bg-stone-50 text-stone-900 antialiased">
+      <CustomCursor />
       <Navbar />
       <main>
         <Hero />
