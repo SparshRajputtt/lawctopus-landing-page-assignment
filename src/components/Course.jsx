@@ -40,7 +40,16 @@ import {
   Phone,
 } from "lucide-react";
 
-import { SocialIcon } from "react-social-icons";
+import Shashank from "../assets/Shashank.png";
+import Akanksha from "../assets/Akanksha-Mishra.webp";
+import Pranjal from "../assets/Pranjal-Doshi.webp";
+import Arunima from "../assets/Arunima-Jha.webp";
+import Gourav from "../assets/Gourav-1.webp";
+import Tanuj from "../assets/Tanuj.webp";
+
+import Bhumesh from "../assets/Bhumesh-Varma_Faculty_0017_Group-4.webp";
+import Debanshu from "../assets/Debanshu-Khettry-Faculty_0015_Group-6.webp";
+import Shayonee from "../assets/Shayonee-Dasgupta_Faculty_0012_Group-9.webp";
 
 /* ──────────────────────────────────────────────────────────────
    Animation presets — match Hero.jsx and About.jsx exactly
@@ -225,6 +234,7 @@ const faculty = [
     expertise: ["Commercial Contracts", "Litigation", "Corporate Law"],
     experience: "6+ years",
     badges: ["Ex-Wadia Ghandy", "Ex-HSA", "Ex-Khaitan"],
+    image: Shashank,
   },
   {
     name: "Akanksha Mishra",
@@ -234,6 +244,7 @@ const faculty = [
     expertise: ["Contract Drafting", "Real Estate", "Corporate Counsel"],
     experience: "6+ years",
     badges: ["Head LLS", "Gold Medalist", "Bombay HC"],
+    image: Akanksha,
   },
   {
     name: "Pranjal Doshi",
@@ -243,6 +254,7 @@ const faculty = [
     expertise: ["M&A", "Private Equity", "Investment Documents"],
     experience: "5+ years",
     badges: ["Cambridge", "Ex-Trilegal", "Ex-Khaitan"],
+    image: Pranjal,
   },
   {
     name: "Arunima Jha",
@@ -252,6 +264,7 @@ const faculty = [
     expertise: ["Media Law", "Privacy Law", "Data Security"],
     experience: "10+ years",
     badges: ["Omnicom", "Ex-BookMyShow", "LLM"],
+    image: Arunima,
   },
   {
     name: "Gourav Mohanty",
@@ -261,6 +274,7 @@ const faculty = [
     expertise: ["Dispute Resolution", "Contract Drafting", "Corporate"],
     experience: "8+ years",
     badges: ["Ex-SAM", "Gold Medalist", "Ram Jethmalani Scholar"],
+    image: Gourav,
   },
   {
     name: "Tanuj Kalia",
@@ -270,6 +284,7 @@ const faculty = [
     expertise: ["Legal Education", "Negotiation", "Career Building"],
     experience: "12+ years",
     badges: ["CEO Lawctopus", "TEDx", "40 Under 40"],
+    image: Tanuj,
   },
 ];
 
@@ -278,16 +293,19 @@ const courseDevelopers = [
     name: "Bhumesh Verma",
     role: "Recorded Lectures",
     cred: "25+ years experience. Ex-partner at Khaitan & Co., Paras Kuhad & Associates. Managing Partner at Corp Comm Legal. Author of 'Practical Guide to Drafting Commercial Contracts' (OakBridge).",
+    image: Bhumesh,
   },
   {
     name: "Shayonee Dasgupta",
     role: "Lead Researcher & Content Developer",
     cred: "NUJS Kolkata 2012. Ex-Trilegal (2012-15), ex-Shardul Amarchand Mangaldas (Senior Associate 2017-18). Consultant at IDIA. Freelance researcher-writer.",
+    image: Shayonee,
   },
   {
     name: "Debanshu Khettry",
     role: "Development of Reading Modules",
     cred: "NUJS Kolkata 2013, UCL LLM 2014. Founder, Standard Indian Legal Citation (SILC). Angel Investor with Mumbai Angels and Calcutta Angels. Ex-Platinum Partners, Delhi.",
+    image: Debanshu,
   },
 ];
 
@@ -652,14 +670,27 @@ function FacultyCard({ member, index }) {
     <motion.div
       variants={staggerChild}
       whileHover={{ y: -4, transition: { duration: 0.25 } }}
-      className="group relative overflow-hidden rounded-xl border border-[#e8e4e0] bg-white shadow-sm transition-shadow hover:shadow-md"
+      className="group relative overflow-hidden rounded-xl border border-[#e8e4e0] bg-white p-5 shadow-sm transition-shadow hover:shadow-md"
     >
-      <div className="flex flex-col sm:flex-row">
-        <div className="flex h-32 w-full shrink-0 items-center justify-center bg-[#f5f0eb] sm:h-auto sm:w-40">
-          <User className="h-12 w-12 text-[#d4a574]" />
+      <div className="flex gap-5">
+        {/* Portrait — small, framed, consistent */}
+        <div className="shrink-0">
+          <div className="flex h-24 w-24 items-center justify-center overflow-hidden rounded-xl bg-[#f3f1ee] sm:h-28 sm:w-28">
+            {member.image ? (
+              <img
+                src={member.image}
+                alt={member.name}
+                className="h-full w-full object-cover object-top transition duration-500 sm:grayscale sm:group-hover:scale-105 sm:group-hover:grayscale-0"
+              />
+            ) : (
+              <User className="h-10 w-10 text-[#d4a574]" />
+            )}
+          </div>
         </div>
-        <div className="flex-1 p-6">
-          <div className="mb-3 flex flex-wrap gap-1.5">
+
+        {/* Content */}
+        <div className="flex-1 min-w-0">
+          <div className="mb-2 flex flex-wrap gap-1.5">
             {member.badges.map((badge, bi) => (
               <span
                 key={bi}
@@ -669,16 +700,16 @@ function FacultyCard({ member, index }) {
               </span>
             ))}
           </div>
-          <h3 className="text-lg font-semibold text-[#1a1a1a]">
+          <h3 className="text-base font-semibold text-[#1a1a1a]">
             {member.name}
           </h3>
           <p className="mt-0.5 text-sm font-medium text-[#6b6b6b]">
             {member.designation}
           </p>
-          <p className="mt-3 text-sm leading-relaxed text-[#6b6b6b]">
+          <p className="mt-2 text-sm leading-relaxed text-[#6b6b6b]">
             {member.intro}
           </p>
-          <div className="mt-4 flex flex-wrap gap-2">
+          <div className="mt-3 flex flex-wrap gap-2">
             {member.expertise.map((exp, ei) => (
               <span
                 key={ei}
@@ -688,7 +719,7 @@ function FacultyCard({ member, index }) {
               </span>
             ))}
           </div>
-          <div className="mt-4 flex items-center gap-1.5 text-xs text-[#6b6b6b]">
+          <div className="mt-3 flex items-center gap-1.5 text-xs text-[#6b6b6b]">
             <Clock className="h-3.5 w-3.5" />
             <span>{member.experience} experience</span>
           </div>
@@ -1069,8 +1100,12 @@ export default function Course() {
                 whileHover={{ y: -3, transition: { duration: 0.2 } }}
                 className="rounded-xl border border-[#e8e4e0] bg-white p-6 shadow-sm transition-shadow hover:shadow-md"
               >
-                <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-[#f5f0eb]">
-                  <PenTool className="h-5 w-5 text-[#b87333]" />
+                <div className="mb-4 h-14 w-14 overflow-hidden rounded-full border-2 border-[#f5f0eb]">
+                  <img
+                    src={dev.image}
+                    alt={dev.name}
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
                 </div>
                 <h3 className="text-base font-semibold text-[#1a1a1a]">
                   {dev.name}

@@ -1,5 +1,5 @@
-import { useRef, useEffect, useState } from "react";
-import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import {
   ArrowRight,
   Play,
@@ -11,10 +11,11 @@ import {
   Users,
   Clock,
   Star,
-  FileCheck,
   PenTool,
   Globe,
   BookOpen,
+  Wallet,
+  Mail,
   Calendar,
 } from "lucide-react";
 
@@ -43,26 +44,6 @@ const staggerChild = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE_OUT } },
 };
 
-const floatSlow = {
-  animate: { y: [0, -8, 0] },
-  transition: { duration: 5, repeat: Infinity, ease: "easeInOut" },
-};
-
-const floatMedium = {
-  animate: { y: [0, -6, 0] },
-  transition: { duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 },
-};
-
-const floatFast = {
-  animate: { y: [0, -5, 0] },
-  transition: {
-    duration: 3.5,
-    repeat: Infinity,
-    ease: "easeInOut",
-    delay: 0.5,
-  },
-};
-
 /* ──────────────────────────────────────────────────────────────
    Data
    ────────────────────────────────────────────────────────────── */
@@ -80,15 +61,6 @@ const trustChips = [
   { icon: Users, label: "Expert Faculty" },
   { icon: Award, label: "Certificate of Completion" },
   { icon: Globe, label: "Freelancing Focus" },
-];
-
-const courseHighlights = [
-  "NDAs & Confidentiality",
-  "Employment Contracts",
-  "Service Agreements",
-  "Freelance Contracts",
-  "Commercial Leases",
-  "IP Assignments",
 ];
 
 /* ──────────────────────────────────────────────────────────────
@@ -148,116 +120,255 @@ function TrustChip({ chip, index }) {
   );
 }
 
-/* ─── Right column: Legal Desk Composition ─── */
-
-function ContractPreviewCard() {
+/* ─── Paper Clip SVG ─── */
+function PaperClip() {
   return (
-    <motion.div
-      initial={{ opacity: 0, x: 30, y: 20 }}
-      animate={{ opacity: 1, x: 0, y: 0 }}
-      transition={{ duration: 0.9, delay: 0.5, ease: EASE_OUT }}
-      {...floatSlow}
-      className="absolute -left-4 top-0 z-30 w-64 rounded-xl border border-[#e8e4e0] bg-white p-5 shadow-lg shadow-black/5 sm:w-72"
+    <svg
+      width="28"
+      height="56"
+      viewBox="0 0 28 56"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className="drop-shadow-sm"
     >
-      <div className="mb-4 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <FileText className="h-4 w-4 text-[#6b6b6b]" />
-          <span className="text-[10px] font-semibold uppercase tracking-wider text-[#6b6b6b]">
-            Non-Disclosure Agreement
+      <path
+        d="M8 52V16C8 10.477 12.477 6 18 6C23.523 6 28 10.477 28 16V44C28 47.314 25.314 50 22 50C18.686 50 16 47.314 16 44V20"
+        stroke="#b87333"
+        strokeWidth="3"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        fill="none"
+      />
+      <path
+        d="M8 52V16C8 10.477 12.477 6 18 6C23.523 6 28 10.477 28 16V44C28 47.314 25.314 50 22 50C18.686 50 16 47.314 16 44V20"
+        stroke="rgba(0,0,0,0.15)"
+        strokeWidth="3"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        fill="none"
+        transform="translate(1,1)"
+      />
+    </svg>
+  );
+}
+
+/* ─── Document Stack ─── */
+function DocumentStack() {
+  return (
+    <div className="absolute bottom-20 left-1/2 -translate-x-1/2">
+      {/* Bottom document — NDA */}
+      <motion.div
+        initial={{ opacity: 0, y: 30, rotate: -6 }}
+        animate={{ opacity: 0.6, y: 0, rotate: -6 }}
+        transition={{ duration: 0.8, delay: 0.4, ease: EASE_OUT }}
+        className="absolute -left-8 -top-4 h-64 w-52 rounded-lg border border-white/5 bg-[#252422] p-5 shadow-xl"
+      >
+        <div className="mb-3 flex items-center gap-2">
+          <Shield className="h-3 w-3 text-[#555]" />
+          <span className="text-[10px] tracking-wider text-[#555] uppercase">
+            NDA
           </span>
         </div>
-        <span className="rounded-full bg-[#e8f5ec] px-2 py-0.5 text-[10px] font-medium text-[#2d5a3d]">
-          Drafted
-        </span>
-      </div>
-      <div className="space-y-2">
-        <div className="h-1.5 w-full rounded bg-[#f5f0eb]" />
-        <div className="h-1.5 w-5/6 rounded bg-[#f5f0eb]" />
-        <div className="h-1.5 w-full rounded bg-[#f5f0eb]" />
-        <div className="h-1.5 w-3/4 rounded bg-[#f5f0eb]" />
-        <div className="h-1.5 w-full rounded bg-[#f5f0eb]" />
-      </div>
-      <div className="mt-4 flex items-center gap-2">
-        <div className="h-5 w-5 rounded-full bg-[#f5f0eb]" />
-        <div className="h-1.5 w-20 rounded bg-[#f5f0eb]" />
-      </div>
-    </motion.div>
-  );
-}
+        <div className="space-y-2">
+          <div className="h-1.5 w-3/4 rounded bg-[#333]" />
+          <div className="h-1.5 w-full rounded bg-[#333]" />
+          <div className="h-1.5 w-5/6 rounded bg-[#333]" />
+          <div className="h-1.5 w-full rounded bg-[#333]" />
+          <div className="h-1.5 w-2/3 rounded bg-[#333]" />
+        </div>
+        <div className="mt-6 flex items-center gap-2">
+          <div className="h-4 w-4 rounded-full bg-[#333]" />
+          <div className="h-1.5 w-16 rounded bg-[#333]" />
+        </div>
+      </motion.div>
 
-function ClauseCard() {
-  return (
-    <motion.div
-      initial={{ opacity: 0, x: -20, y: 40 }}
-      animate={{ opacity: 1, x: 0, y: 0 }}
-      transition={{ duration: 0.9, delay: 0.7, ease: EASE_OUT }}
-      {...floatMedium}
-      className="absolute -right-2 top-24 z-20 w-52 rounded-xl border border-[#e8e4e0] bg-white p-4 shadow-lg shadow-black/5 sm:w-60"
-    >
-      <div className="mb-3 flex items-center gap-2">
-        <Shield className="h-4 w-4 text-[#6b6b6b]" />
-        <span className="text-[10px] font-semibold uppercase tracking-wider text-[#6b6b6b]">
-          Key Clauses
-        </span>
-      </div>
-      <div className="space-y-2.5">
-        {[
-          "Indemnification",
-          "Termination",
-          "Governing Law",
-          "Force Majeure",
-        ].map((clause, i) => (
-          <div key={i} className="flex items-center gap-2">
-            <CheckCircle2 className="h-3.5 w-3.5 text-[#d4a574]" />
-            <span className="text-xs text-[#3d3d3d]">{clause}</span>
+      {/* Middle document — Employment Agreement */}
+      <motion.div
+        initial={{ opacity: 0, y: 20, rotate: -2 }}
+        animate={{ opacity: 0.8, y: 0, rotate: -2 }}
+        transition={{ duration: 0.8, delay: 0.5, ease: EASE_OUT }}
+        className="absolute -left-3 -top-8 h-64 w-52 rounded-lg border border-white/8 bg-[#2a2826] p-5 shadow-xl"
+      >
+        <div className="mb-3 flex items-center gap-2">
+          <Briefcase className="h-3 w-3 text-[#666]" />
+          <span className="text-[10px] tracking-wider text-[#666] uppercase">
+            Employment Agreement
+          </span>
+        </div>
+        <div className="space-y-2">
+          <div className="h-1.5 w-full rounded bg-[#3a3836]" />
+          <div className="h-1.5 w-4/5 rounded bg-[#3a3836]" />
+          <div className="h-1.5 w-full rounded bg-[#3a3836]" />
+          <div className="h-1.5 w-3/4 rounded bg-[#3a3836]" />
+          <div className="h-1.5 w-full rounded bg-[#3a3836]" />
+        </div>
+        <div className="mt-4 rounded border border-[#b87333]/10 bg-[#b87333]/5 px-2 py-1 text-center text-[9px] font-medium text-[#b87333]/60">
+          Under Review
+        </div>
+      </motion.div>
+
+      {/* Top document — Service Agreement (Hero) */}
+      <motion.div
+        initial={{ opacity: 0, y: 10, rotate: 0 }}
+        animate={{ opacity: 1, y: 0, rotate: 0 }}
+        transition={{ duration: 0.8, delay: 0.6, ease: EASE_OUT }}
+        className="relative h-64 w-52 rounded-lg border border-white/10 bg-[#faf8f5] p-5 shadow-2xl"
+      >
+        {/* Paper clip */}
+        <div className="absolute -left-3 -top-6 z-10 rotate-12">
+          <PaperClip />
+        </div>
+
+        {/* Revision note clipped behind */}
+        <div className="absolute -left-2 -top-3 z-0 h-20 w-24 rotate-[-4deg] rounded-sm bg-[#f8f4ec] p-2.5 shadow-md">
+          <div className="text-[8px] font-bold uppercase tracking-wider text-[#8a7a6a]">
+            Legal Review
           </div>
-        ))}
-      </div>
-    </motion.div>
-  );
-}
-
-function ChecklistCard() {
-  return (
-    <motion.div
-      initial={{ opacity: 0, x: 20, y: 60 }}
-      animate={{ opacity: 1, x: 0, y: 0 }}
-      transition={{ duration: 0.9, delay: 0.9, ease: EASE_OUT }}
-      {...floatFast}
-      className="absolute left-8 top-56 z-40 w-48 rounded-xl border border-[#e8e4e0] bg-white p-4 shadow-lg shadow-black/5"
-    >
-      <div className="mb-3 flex items-center gap-2">
-        <Clock className="h-4 w-4 text-[#6b6b6b]" />
-        <span className="text-[10px] font-semibold uppercase tracking-wider text-[#6b6b6b]">
-          Review Checklist
-        </span>
-      </div>
-      <div className="space-y-2">
-        {[
-          { label: "Party details", done: true },
-          { label: "Scope defined", done: true },
-          { label: "Payment terms", done: true },
-          { label: "Dispute clause", done: false },
-        ].map((item, i) => (
-          <div key={i} className="flex items-center gap-2">
-            <div
-              className={`flex h-4 w-4 items-center justify-center rounded-full ${
-                item.done ? "bg-[#e8f5ec]" : "bg-[#f5f0eb]"
-              }`}
-            >
-              {item.done ? (
-                <CheckCircle2 className="h-3 w-3 text-[#2d5a3d]" />
-              ) : (
-                <div className="h-2 w-2 rounded-full bg-[#d4a574]" />
-              )}
+          <div className="mt-1 space-y-0.5">
+            <div className="flex items-center gap-1">
+              <CheckCircle2 className="h-2.5 w-2.5 text-[#2d5a3d]" />
+              <span className="text-[8px] text-[#5a4a3a]">
+                Liability updated
+              </span>
             </div>
-            <span
-              className={`text-xs ${
-                item.done ? "text-[#3d3d3d]" : "text-[#6b6b6b]"
-              }`}
-            >
-              {item.label}
-            </span>
+            <div className="flex items-center gap-1">
+              <CheckCircle2 className="h-2.5 w-2.5 text-[#2d5a3d]" />
+              <span className="text-[8px] text-[#5a4a3a]">
+                Confidentiality revised
+              </span>
+            </div>
+            <div className="flex items-center gap-1">
+              <div className="h-2 w-2 rounded-full border border-[#b87333]" />
+              <span className="text-[8px] font-medium text-[#b87333]">
+                Ready for signature
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {/* Page fold */}
+        <div className="absolute -right-px -top-px h-6 w-6 overflow-hidden rounded-tr-lg">
+          <div className="absolute right-0 top-0 h-8 w-8 rotate-45 bg-[#e8e4e0]" />
+        </div>
+
+        {/* CONFIDENTIAL watermark */}
+        <div className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-[0.03]">
+          <span className="rotate-[-30deg] text-4xl font-bold uppercase tracking-[0.3em] text-[#1a1a1a]">
+            Confidential
+          </span>
+        </div>
+
+        {/* Document header */}
+        <div className="mb-4">
+          <div className="text-[10px] font-bold uppercase tracking-[0.15em] text-[#b87333]">
+            Service Agreement
+          </div>
+        </div>
+
+        {/* Document body */}
+        <div className="space-y-3">
+          <div>
+            <div className="text-[8px] font-semibold uppercase tracking-wider text-[#9a8a7a]">
+              Client
+            </div>
+            <div className="text-xs font-medium text-[#1a1a1a]">
+              TechStart Pvt. Ltd.
+            </div>
+          </div>
+          <div>
+            <div className="text-[8px] font-semibold uppercase tracking-wider text-[#9a8a7a]">
+              Matter
+            </div>
+            <div className="text-[10px] text-[#3d3d3d]">
+              Software Development Agreement
+            </div>
+          </div>
+          <div>
+            <div className="text-[8px] font-semibold uppercase tracking-wider text-[#9a8a7a]">
+              Jurisdiction
+            </div>
+            <div className="text-[10px] text-[#3d3d3d]">Delhi</div>
+          </div>
+          <div>
+            <div className="text-[8px] font-semibold uppercase tracking-wider text-[#9a8a7a]">
+              Status
+            </div>
+            <div className="flex items-center gap-1.5">
+              <div className="h-1.5 w-1.5 rounded-full bg-[#2d5a3d]" />
+              <span className="text-[10px] font-medium text-[#2d5a3d]">
+                Draft Completed
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {/* Signature line */}
+        <div className="mt-5">
+          <div className="text-[8px] text-[#9a8a7a]">Signature</div>
+          <div className="mt-1 border-b border-[#c8c4c0]" />
+        </div>
+
+        {/* Footer */}
+        <div className="mt-4 flex items-center justify-between">
+          <span className="text-[8px] text-[#9a8a7a]">Page 1 / 12</span>
+          <span className="text-[8px] text-[#b87333]">₹45,000</span>
+        </div>
+
+        {/* Prepared by */}
+        <div className="mt-1 text-[7px] text-[#aaa]">
+          Prepared using Lawctopus Framework
+        </div>
+      </motion.div>
+    </div>
+  );
+}
+
+/* ─── Status Badge ─── */
+function StatusBadge({ label, icon: Icon, color, bg, position, delay }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.8, y: 10 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
+      transition={{ delay, duration: 0.5, ease: EASE_OUT }}
+      className={`absolute ${position} flex items-center gap-1.5 rounded-full ${bg} px-3 py-1.5 text-xs font-medium shadow-lg`}
+    >
+      <Icon className={`h-3.5 w-3.5 ${color}`} />
+      <span className="text-[#1a1a1a]">{label}</span>
+    </motion.div>
+  );
+}
+
+/* ─── Timeline ─── */
+function Timeline() {
+  const steps = [
+    { label: "Inquiry", active: true },
+    { label: "Draft", active: true },
+    { label: "Review", active: true },
+    { label: "Approved", active: true, check: true },
+  ];
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, x: 20 }}
+      animate={{ opacity: 0.15, x: 0 }}
+      transition={{ delay: 1.2, duration: 0.6, ease: EASE_OUT }}
+      className="absolute right-4 top-1/2 -translate-y-1/2"
+    >
+      <div className="flex flex-col items-center gap-2">
+        {steps.map((step, i) => (
+          <div key={i} className="flex flex-col items-center gap-2">
+            <div className="flex items-center gap-2">
+              <div
+                className={`h-2 w-2 rounded-full ${
+                  step.active ? "bg-[#b87333]" : "bg-[#444]"
+                }`}
+              />
+              <span className="text-[9px] font-medium uppercase tracking-wider text-white/40">
+                {step.check && <span className="mr-1">✓</span>}
+                {step.label}
+              </span>
+            </div>
+            {i < steps.length - 1 && <div className="h-4 w-px bg-white/10" />}
           </div>
         ))}
       </div>
@@ -265,110 +376,45 @@ function ChecklistCard() {
   );
 }
 
-function CertificateCard() {
+/* ─── Email Notification ─── */
+function EmailNotification() {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 40, scale: 0.95 }}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
-      transition={{ duration: 0.9, delay: 1.1, ease: EASE_OUT }}
-      {...floatSlow}
-      className="absolute -right-4 top-64 z-30 w-56 rounded-xl border border-[#e8e4e0] bg-white p-4 shadow-lg shadow-black/5 sm:w-64"
+      initial={{ opacity: 0, x: -20, y: -10 }}
+      animate={{ opacity: 1, x: 0, y: 0 }}
+      transition={{ delay: 1.4, duration: 0.6, ease: EASE_OUT }}
+      className="absolute left-6 top-20 flex items-center gap-2.5 rounded-lg border border-white/8 bg-[#252422] px-3 py-2 shadow-lg"
     >
-      <div className="mb-3 flex items-center gap-3">
-        <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#f5f0eb]">
-          <Award className="h-5 w-5 text-[#b87333]" />
+      <div className="flex h-7 w-7 items-center justify-center rounded-full bg-[#b87333]/10">
+        <Mail className="h-3.5 w-3.5 text-[#b87333]" />
+      </div>
+      <div>
+        <div className="text-[10px] font-medium text-white/80">
+          New Client Inquiry
         </div>
-        <div>
-          <div className="text-xs font-semibold text-[#1a1a1a]">
-            Certificate
-          </div>
-          <div className="text-[10px] text-[#6b6b6b]">Lawctopus Verified</div>
-        </div>
+        <div className="text-[9px] text-[#b87333]">BrightWave Technologies</div>
       </div>
-      <div className="space-y-1.5">
-        <div className="h-2 w-3/4 rounded bg-[#f5f0eb]" />
-        <div className="h-2 w-1/2 rounded bg-[#f5f0eb]" />
-      </div>
-      <div className="mt-3 flex items-center gap-1.5">
-        <FileCheck className="h-3.5 w-3.5 text-[#2d5a3d]" />
-        <span className="text-[10px] font-medium text-[#2d5a3d]">
-          Blockchain Verified
-        </span>
-      </div>
+      <div className="ml-2 text-[8px] text-white/30">just now</div>
     </motion.div>
   );
 }
 
-function FreelanceProjectCard() {
+/* ─── Live Session Indicator ─── */
+function LiveSessionIndicator() {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30, x: -10 }}
-      animate={{ opacity: 1, y: 0, x: 0 }}
-      transition={{ duration: 0.9, delay: 1.3, ease: EASE_OUT }}
-      {...floatMedium}
-      className="absolute left-0 top-96 z-20 w-56 rounded-xl border border-[#e8e4e0] bg-white p-4 shadow-lg shadow-black/5"
+      initial={{ opacity: 0, y: -10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.8, duration: 0.5, ease: EASE_OUT }}
+      className="absolute left-6 top-6 flex items-center gap-2 rounded-full border border-white/8 bg-[#252422] px-3 py-1.5"
     >
-      <div className="mb-3 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <Briefcase className="h-4 w-4 text-[#6b6b6b]" />
-          <span className="text-[10px] font-semibold uppercase tracking-wider text-[#6b6b6b]">
-            Freelance Project
-          </span>
-        </div>
-        <span className="rounded-full bg-[#faf8f5] px-2 py-0.5 text-[10px] font-medium text-[#b87333]">
-          Active
-        </span>
-      </div>
-      <div className="text-sm font-semibold text-[#1a1a1a]">
-        Service Agreement
-      </div>
-      <div className="mt-1 text-[10px] text-[#6b6b6b]">
-        Client: TechStart Pvt. Ltd.
-      </div>
-      <div className="mt-3 flex items-center justify-between">
-        <span className="text-xs font-semibold text-[#1a1a1a]">₹45,000</span>
-        <span className="text-[10px] text-[#6b6b6b]">Due in 3 days</span>
-      </div>
-    </motion.div>
-  );
-}
-
-function ClientApprovalCard() {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20, scale: 0.9 }}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
-      transition={{ duration: 0.9, delay: 1.5, ease: EASE_OUT }}
-      {...floatFast}
-      className="absolute right-8 top-[28rem] z-40 w-48 rounded-xl border border-[#e8f5ec] bg-[#e8f5ec]/80 p-4 shadow-lg shadow-black/5 backdrop-blur-sm"
-    >
-      <div className="flex items-center gap-2">
-        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-white">
-          <CheckCircle2 className="h-4 w-4 text-[#2d5a3d]" />
-        </div>
-        <div>
-          <div className="text-xs font-semibold text-[#2d5a3d]">
-            Client Approved
-          </div>
-          <div className="text-[10px] text-[#2d5a3d]/70">
-            Contract finalized
-          </div>
-        </div>
-      </div>
-    </motion.div>
-  );
-}
-
-function ModuleTag({ label, className, delay }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.8 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.5, delay, ease: EASE_OUT }}
-      className={`absolute z-10 flex items-center gap-1.5 rounded-full border border-[#e8e4e0] bg-white/90 px-3 py-1.5 text-[11px] font-medium text-[#3d3d3d] shadow-sm backdrop-blur-sm ${className}`}
-    >
-      <Star className="h-3 w-3 text-[#d4a574]" />
-      {label}
+      <span className="relative flex h-2 w-2">
+        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#2d5a3d] opacity-75" />
+        <span className="relative inline-flex h-2 w-2 rounded-full bg-[#2d5a3d]" />
+      </span>
+      <span className="text-[10px] font-medium text-white/60">
+        Live Session
+      </span>
     </motion.div>
   );
 }
@@ -384,19 +430,6 @@ export default function Hero() {
     offset: ["start start", "end start"],
   });
   const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
-
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-
-  useEffect(() => {
-    const handleMove = (e) => {
-      setMousePos({
-        x: (e.clientX / window.innerWidth - 0.5) * 16,
-        y: (e.clientY / window.innerHeight - 0.5) * 16,
-      });
-    };
-    window.addEventListener("mousemove", handleMove);
-    return () => window.removeEventListener("mousemove", handleMove);
-  }, []);
 
   return (
     <section
@@ -508,42 +541,250 @@ export default function Hero() {
             </motion.div>
           </div>
 
-          {/* Right column — Legal Desk Composition */}
+           {/* ─── Right column — Dark Workspace ───  */}
           <div className="relative z-10 hidden min-h-[520px] lg:block">
             <motion.div
-              animate={{ x: mousePos.x * 0.2, y: mousePos.y * 0.2 }}
-              transition={{ type: "spring", stiffness: 60, damping: 30 }}
-              className="relative h-full w-full"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              className="relative flex min-h-[520px] items-center justify-center overflow-hidden rounded-2xl bg-[#171514] p-8 shadow-[0_18px_45px_rgba(0,0,0,0.28)]"
+              style={{ border: "1px solid rgba(255,255,255,0.06)" }}
             >
-              <ContractPreviewCard />
-              <ClauseCard />
-              <ChecklistCard />
-              <CertificateCard />
-              <FreelanceProjectCard />
-              <ClientApprovalCard />
+              {/* Paper grain texture */}
+              <div
+                className="pointer-events-none absolute inset-0 opacity-[0.02]"
+                style={{
+                  backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+                  backgroundSize: "200px 200px",
+                }}
+              />
 
-              {/* Module tags floating around */}
-              <ModuleTag label="NDAs" className="right-0 top-0" delay={1.6} />
-              <ModuleTag
-                label="Employment Contracts"
-                className="left-20 top-40"
-                delay={1.7}
-              />
-              <ModuleTag
-                label="Service Agreements"
-                className="right-4 top-48"
-                delay={1.8}
-              />
-              <ModuleTag
-                label="Commercial Leases"
-                className="left-4 bottom-32"
-                delay={1.9}
-              />
-              <ModuleTag
-                label="IP Assignments"
-                className="right-12 bottom-16"
-                delay={2.0}
-              />
+              {/* Soft warm radial glow behind document */}
+              <div className="pointer-events-none absolute left-1/2 top-1/2 h-80 w-80 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#b87333]/6 blur-3xl" />
+
+              {/* Fountain pen — top-left, partially visible */}
+              <motion.div
+                initial={{ opacity: 0, x: -20, y: -20 }}
+                animate={{ opacity: 1, x: 0, y: 0 }}
+                transition={{
+                  delay: 0.6,
+                  duration: 0.6,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+                className="absolute -left-8 -top-6 h-32 w-48 rotate-[35deg]"
+              >
+                {/* Pen body */}
+                <div className="absolute left-0 top-1/2 h-3 w-36 -translate-y-1/2 rounded-full bg-[#0a0a0a] shadow-lg">
+                  {/* Gold trim ring */}
+                  <div className="absolute right-8 top-0 h-full w-1 bg-[#b87333]" />
+                  <div className="absolute right-16 top-0 h-full w-0.5 bg-[#d4a574]/60" />
+                </div>
+                {/* Pen nib section */}
+                <div className="absolute right-0 top-1/2 h-4 w-10 -translate-y-1/2">
+                  <div
+                    className="absolute right-0 top-1/2 h-3 w-8 -translate-y-1/2 bg-[#1a1a1a]"
+                    style={{
+                      clipPath: "polygon(0 20%, 100% 0, 100% 100%, 0 80%)",
+                    }}
+                  />
+                  <div className="absolute -right-0.5 top-1/2 h-0.5 w-3 -translate-y-1/2 bg-[#b87333]" />
+                </div>
+                {/* Pen cap */}
+                <div className="absolute left-0 top-1/2 h-4 w-14 -translate-y-1/2 rounded-l-full bg-[#0a0a0a]">
+                  <div className="absolute left-2 top-1/2 h-2 w-2 -translate-y-1/2 rounded-full bg-[#b87333]" />
+                </div>
+              </motion.div>
+
+              {/* Leather notebook — bottom-right, mostly cropped */}
+              <motion.div
+                initial={{ opacity: 0, x: 20, y: 20 }}
+                animate={{ opacity: 0.4, x: 0, y: 0 }}
+                transition={{
+                  delay: 0.7,
+                  duration: 0.6,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+                className="absolute -bottom-4 -right-4 h-40 w-56 rotate-[-8deg] rounded-lg bg-[#3d2b1f] shadow-xl"
+                style={{ border: "1px solid rgba(184,115,51,0.15)" }}
+              >
+                <div className="absolute left-3 top-0 h-full w-0.5 bg-[#b87333]/20" />
+                <div className="absolute right-4 top-4 h-2 w-16 rounded bg-[#2a1f18]" />
+                <div className="absolute right-4 top-8 h-2 w-12 rounded bg-[#2a1f18]" />
+              </motion.div>
+
+              {/* ─── Hero Document ─── */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  delay: 0.3,
+                  duration: 0.8,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+                className="relative z-10 w-72 rotate-[2deg] rounded-lg bg-white p-6 shadow-2xl"
+                style={{
+                  boxShadow:
+                    "0 25px 60px rgba(0,0,0,0.35), 0 8px 20px rgba(0,0,0,0.2)",
+                }}
+              >
+                {/* Copper paper clip — top-right */}
+                <div className="absolute -right-1 -top-3 z-20 rotate-[-15deg]">
+                  <svg width="20" height="40" viewBox="0 0 20 40" fill="none">
+                    <path
+                      d="M6 36V12C6 7.58 9.58 4 14 4C18.42 4 22 7.58 22 12V28C22 30.2 20.2 32 18 32C15.8 32 14 30.2 14 28V16"
+                      stroke="#b87333"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                    />
+                  </svg>
+                </div>
+
+                {/* Document header */}
+                <div className="mb-5">
+                  <div className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#b87333]">
+                    Service Agreement
+                  </div>
+                  <div className="mt-3 h-px w-12 bg-[#b87333]/30" />
+                </div>
+
+                {/* Document metadata */}
+                <div className="mb-5 space-y-2.5">
+                  <div>
+                    <div className="text-[9px] font-semibold uppercase tracking-wider text-[#9a8a7a]">
+                      Client
+                    </div>
+                    <div className="text-[11px] font-medium text-[#1a1a1a]">
+                      TechStart Pvt. Ltd.
+                    </div>
+                  </div>
+                  <div>
+                    <div className="text-[9px] font-semibold uppercase tracking-wider text-[#9a8a7a]">
+                      Matter
+                    </div>
+                    <div className="text-[10px] text-[#3d3d3d]">
+                      Software Development Agreement
+                    </div>
+                  </div>
+                  <div>
+                    <div className="text-[9px] font-semibold uppercase tracking-wider text-[#9a8a7a]">
+                      Jurisdiction
+                    </div>
+                    <div className="text-[10px] text-[#3d3d3d]">Delhi</div>
+                  </div>
+                </div>
+
+                {/* Sections with realistic text */}
+                <div className="space-y-3">
+                  <div>
+                    <div className="mb-1 text-[9px] font-bold uppercase tracking-wider text-[#1a1a1a]">
+                      1. Scope of Services
+                    </div>
+                    <div className="space-y-1">
+                      <div className="h-1 w-full rounded bg-[#e8e4e0]" />
+                      <div className="h-1 w-5/6 rounded bg-[#e8e4e0]" />
+                      <div className="h-1 w-4/5 rounded bg-[#e8e4e0]" />
+                    </div>
+                  </div>
+                  <div>
+                    <div className="mb-1 text-[9px] font-bold uppercase tracking-wider text-[#1a1a1a]">
+                      2. Payment Terms
+                    </div>
+                    <div className="space-y-1">
+                      <div className="h-1 w-full rounded bg-[#e8e4e0]" />
+                      <div className="h-1 w-3/4 rounded bg-[#e8e4e0]" />
+                    </div>
+                  </div>
+                  <div>
+                    <div className="mb-1 text-[9px] font-bold uppercase tracking-wider text-[#1a1a1a]">
+                      3. Confidentiality
+                    </div>
+                    <div className="space-y-1">
+                      <div className="h-1 w-full rounded bg-[#e8e4e0]" />
+                      <div className="h-1 w-5/6 rounded bg-[#e8e4e0]" />
+                      <div className="h-1 w-2/3 rounded bg-[#e8e4e0]" />
+                    </div>
+                  </div>
+                  <div>
+                    <div className="mb-1 text-[9px] font-bold uppercase tracking-wider text-[#1a1a1a]">
+                      4. Intellectual Property
+                    </div>
+                    <div className="space-y-1">
+                      <div className="h-1 w-full rounded bg-[#e8e4e0]" />
+                      <div className="h-1 w-4/5 rounded bg-[#e8e4e0]" />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Signature line */}
+                <div className="mt-5">
+                  <div className="text-[8px] text-[#9a8a7a]">
+                    Authorized Signature
+                  </div>
+                  <div className="mt-2 border-b border-[#c8c4c0]" />
+                  <div className="mt-1 text-[8px] text-[#aaa]">
+                    Name & Title
+                  </div>
+                </div>
+
+                {/* Document footer */}
+                <div className="mt-4 flex items-center justify-between">
+                  <span className="text-[8px] text-[#aaa]">Page 1 / 12</span>
+                  <span className="text-[8px] text-[#aaa]">
+                    Prepared using Lawctopus Framework
+                  </span>
+                </div>
+              </motion.div>
+
+              {/* ─── Status Badges ─── */}
+
+              {/* Live Session — top-left */}
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  delay: 0.5,
+                  duration: 0.5,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+                className="absolute left-6 top-6 flex items-center gap-2 rounded-full border border-white/8 bg-[#252422] px-3 py-1.5"
+              >
+                <span className="relative flex h-2 w-2">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#2d5a3d] opacity-75" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-[#2d5a3d]" />
+                </span>
+                <span className="text-[10px] font-medium text-white/60">
+                  Live Session
+                </span>
+              </motion.div>
+
+              {/* Client Approved — top-right */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{
+                  delay: 0.8,
+                  duration: 0.5,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+                className="absolute right-6 top-6 flex items-center gap-1.5 rounded-full bg-white px-3 py-1.5 text-xs font-medium shadow-lg"
+              >
+                <CheckCircle2 className="h-3.5 w-3.5 text-[#2d5a3d]" />
+                <span className="text-[#1a1a1a]">Client Approved</span>
+              </motion.div>
+
+              {/* Revenue — bottom-right */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{
+                  delay: 1.0,
+                  duration: 0.5,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+                className="absolute bottom-6 right-6 flex items-center gap-1.5 rounded-full border border-[#b87333]/20 bg-[#faf8f5] px-3 py-1.5 text-xs font-semibold shadow-lg"
+              >
+                <span className="text-[#b87333]">₹45,000</span>
+              </motion.div>
             </motion.div>
           </div>
         </div>
